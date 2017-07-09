@@ -34,3 +34,24 @@ class retrofireTests: XCTestCase {
     }
     
 }
+
+
+import Quick
+import Nimble
+
+class retrofireTestsBdd: QuickSpec {
+    override func spec() {
+        
+        describe("Describing something to test") {
+            
+            
+            context("When use some configuration") {
+                
+                it("Should return something") {
+                    expect(1 + 1).to(equal(2))
+                }
+            }
+            
+        }
+    }
+}
