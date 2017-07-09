@@ -10,6 +10,8 @@
 		078A833D1F127F8B001DE1E7 /* retrofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 078A83331F127F8B001DE1E7 /* retrofire.framework */; };
 		078A83421F127F8B001DE1E7 /* retrofireTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078A83411F127F8B001DE1E7 /* retrofireTests.swift */; };
 		078A83441F127F8B001DE1E7 /* retrofire.h in Headers */ = {isa = PBXBuildFile; fileRef = 078A83361F127F8B001DE1E7 /* retrofire.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9DB66C207132A11460F165C9 /* Pods_retrofireTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EDF12732F975D97A9B0158F /* Pods_retrofireTests.framework */; };
+		C0FC7B8D2195099FB1330ACB /* Pods_retrofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC59058679A53250CE99F9C8 /* Pods_retrofire.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +31,12 @@
 		078A833C1F127F8B001DE1E7 /* retrofireTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = retrofireTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		078A83411F127F8B001DE1E7 /* retrofireTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = retrofireTests.swift; sourceTree = "<group>"; };
 		078A83431F127F8B001DE1E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		344E6AD1FE0B8C930DFB66BF /* Pods-retrofire.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-retrofire.release.xcconfig"; path = "Pods/Target Support Files/Pods-retrofire/Pods-retrofire.release.xcconfig"; sourceTree = "<group>"; };
+		5E38A0752663921602FFA9FC /* Pods-retrofireTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-retrofireTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-retrofireTests/Pods-retrofireTests.release.xcconfig"; sourceTree = "<group>"; };
+		6EDF12732F975D97A9B0158F /* Pods_retrofireTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_retrofireTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7805A56306A0825FFB9C4D48 /* Pods-retrofire.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-retrofire.debug.xcconfig"; path = "Pods/Target Support Files/Pods-retrofire/Pods-retrofire.debug.xcconfig"; sourceTree = "<group>"; };
+		D8C8BA0DAE93FAF32CFF784A /* Pods-retrofireTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-retrofireTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-retrofireTests/Pods-retrofireTests.debug.xcconfig"; sourceTree = "<group>"; };
+		DC59058679A53250CE99F9C8 /* Pods_retrofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_retrofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0FC7B8D2195099FB1330ACB /* Pods_retrofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +53,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				078A833D1F127F8B001DE1E7 /* retrofire.framework in Frameworks */,
+				9DB66C207132A11460F165C9 /* Pods_retrofireTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,6 +66,8 @@
 				078A83351F127F8B001DE1E7 /* retrofire */,
 				078A83401F127F8B001DE1E7 /* retrofireTests */,
 				078A83341F127F8B001DE1E7 /* Products */,
+				35E4F7501A306A148E7F0EC8 /* Pods */,
+				B3B4D2BFAF2DE667A32F8B02 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -86,6 +98,26 @@
 			path = retrofireTests;
 			sourceTree = "<group>";
 		};
+		35E4F7501A306A148E7F0EC8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7805A56306A0825FFB9C4D48 /* Pods-retrofire.debug.xcconfig */,
+				344E6AD1FE0B8C930DFB66BF /* Pods-retrofire.release.xcconfig */,
+				D8C8BA0DAE93FAF32CFF784A /* Pods-retrofireTests.debug.xcconfig */,
+				5E38A0752663921602FFA9FC /* Pods-retrofireTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		B3B4D2BFAF2DE667A32F8B02 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DC59058679A53250CE99F9C8 /* Pods_retrofire.framework */,
+				6EDF12732F975D97A9B0158F /* Pods_retrofireTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -104,10 +136,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 078A83471F127F8B001DE1E7 /* Build configuration list for PBXNativeTarget "retrofire" */;
 			buildPhases = (
+				C103B0926D21E84DF4125CBF /* [CP] Check Pods Manifest.lock */,
 				078A832E1F127F8B001DE1E7 /* Sources */,
 				078A832F1F127F8B001DE1E7 /* Frameworks */,
 				078A83301F127F8B001DE1E7 /* Headers */,
 				078A83311F127F8B001DE1E7 /* Resources */,
+				FC9CD57D7F0C9A5E57C40EBD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -122,9 +156,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 078A834A1F127F8B001DE1E7 /* Build configuration list for PBXNativeTarget "retrofireTests" */;
 			buildPhases = (
+				F47C52B9AA686AE8853039C4 /* [CP] Check Pods Manifest.lock */,
 				078A83381F127F8B001DE1E7 /* Sources */,
 				078A83391F127F8B001DE1E7 /* Frameworks */,
 				078A833A1F127F8B001DE1E7 /* Resources */,
+				734090C44B16BA9AA1D1A8E4 /* [CP] Embed Pods Frameworks */,
+				C28B7457EC6500C6ADC3D71C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -192,6 +229,84 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		734090C44B16BA9AA1D1A8E4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-retrofireTests/Pods-retrofireTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C103B0926D21E84DF4125CBF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C28B7457EC6500C6ADC3D71C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-retrofireTests/Pods-retrofireTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F47C52B9AA686AE8853039C4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FC9CD57D7F0C9A5E57C40EBD /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-retrofire/Pods-retrofire-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		078A832E1F127F8B001DE1E7 /* Sources */ = {
@@ -323,6 +438,7 @@
 		};
 		078A83481F127F8B001DE1E7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7805A56306A0825FFB9C4D48 /* Pods-retrofire.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
@@ -342,6 +458,7 @@
 		};
 		078A83491F127F8B001DE1E7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 344E6AD1FE0B8C930DFB66BF /* Pods-retrofire.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
@@ -361,6 +478,7 @@
 		};
 		078A834B1F127F8B001DE1E7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D8C8BA0DAE93FAF32CFF784A /* Pods-retrofireTests.debug.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = SWAFF648KE;
 				INFOPLIST_FILE = retrofireTests/Info.plist;
@@ -373,6 +491,7 @@
 		};
 		078A834C1F127F8B001DE1E7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5E38A0752663921602FFA9FC /* Pods-retrofireTests.release.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = SWAFF648KE;
 				INFOPLIST_FILE = retrofireTests/Info.plist;
