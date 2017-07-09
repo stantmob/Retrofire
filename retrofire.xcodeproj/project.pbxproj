@@ -10,6 +10,9 @@
 		078A833D1F127F8B001DE1E7 /* retrofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 078A83331F127F8B001DE1E7 /* retrofire.framework */; };
 		078A83421F127F8B001DE1E7 /* retrofireTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078A83411F127F8B001DE1E7 /* retrofireTests.swift */; };
 		078A83441F127F8B001DE1E7 /* retrofire.h in Headers */ = {isa = PBXBuildFile; fileRef = 078A83361F127F8B001DE1E7 /* retrofire.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		078A834E1F12832D001DE1E7 /* RemoteBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078A834D1F12832D001DE1E7 /* RemoteBase.swift */; };
+		078A83501F12834D001DE1E7 /* RemoteBaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078A834F1F12834D001DE1E7 /* RemoteBaseTest.swift */; };
+		078A83521F128A56001DE1E7 /* Call.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078A83511F128A56001DE1E7 /* Call.swift */; };
 		9DB66C207132A11460F165C9 /* Pods_retrofireTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EDF12732F975D97A9B0158F /* Pods_retrofireTests.framework */; };
 		C0FC7B8D2195099FB1330ACB /* Pods_retrofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC59058679A53250CE99F9C8 /* Pods_retrofire.framework */; };
 /* End PBXBuildFile section */
@@ -31,6 +34,9 @@
 		078A833C1F127F8B001DE1E7 /* retrofireTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = retrofireTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		078A83411F127F8B001DE1E7 /* retrofireTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = retrofireTests.swift; sourceTree = "<group>"; };
 		078A83431F127F8B001DE1E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		078A834D1F12832D001DE1E7 /* RemoteBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteBase.swift; sourceTree = "<group>"; };
+		078A834F1F12834D001DE1E7 /* RemoteBaseTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteBaseTest.swift; sourceTree = "<group>"; };
+		078A83511F128A56001DE1E7 /* Call.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Call.swift; sourceTree = "<group>"; };
 		344E6AD1FE0B8C930DFB66BF /* Pods-retrofire.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-retrofire.release.xcconfig"; path = "Pods/Target Support Files/Pods-retrofire/Pods-retrofire.release.xcconfig"; sourceTree = "<group>"; };
 		5E38A0752663921602FFA9FC /* Pods-retrofireTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-retrofireTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-retrofireTests/Pods-retrofireTests.release.xcconfig"; sourceTree = "<group>"; };
 		6EDF12732F975D97A9B0158F /* Pods_retrofireTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_retrofireTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,6 +89,8 @@
 		078A83351F127F8B001DE1E7 /* retrofire */ = {
 			isa = PBXGroup;
 			children = (
+				078A834D1F12832D001DE1E7 /* RemoteBase.swift */,
+				078A83511F128A56001DE1E7 /* Call.swift */,
 				078A83361F127F8B001DE1E7 /* retrofire.h */,
 				078A83371F127F8B001DE1E7 /* Info.plist */,
 			);
@@ -93,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				078A83411F127F8B001DE1E7 /* retrofireTests.swift */,
+				078A834F1F12834D001DE1E7 /* RemoteBaseTest.swift */,
 				078A83431F127F8B001DE1E7 /* Info.plist */,
 			);
 			path = retrofireTests;
@@ -186,6 +195,7 @@
 					078A83321F127F8B001DE1E7 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = SWAFF648KE;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 					078A833B1F127F8B001DE1E7 = {
@@ -313,6 +323,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				078A834E1F12832D001DE1E7 /* RemoteBase.swift in Sources */,
+				078A83521F128A56001DE1E7 /* Call.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,6 +332,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				078A83501F12834D001DE1E7 /* RemoteBaseTest.swift in Sources */,
 				078A83421F127F8B001DE1E7 /* retrofireTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -440,6 +453,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7805A56306A0825FFB9C4D48 /* Pods-retrofire.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = SWAFF648KE;
@@ -452,6 +466,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.stant.retrofire;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -460,6 +475,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 344E6AD1FE0B8C930DFB66BF /* Pods-retrofire.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = SWAFF648KE;
@@ -480,6 +496,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D8C8BA0DAE93FAF32CFF784A /* Pods-retrofireTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = SWAFF648KE;
 				INFOPLIST_FILE = retrofireTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -493,6 +510,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5E38A0752663921602FFA9FC /* Pods-retrofireTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = SWAFF648KE;
 				INFOPLIST_FILE = retrofireTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -521,6 +539,7 @@
 				078A83491F127F8B001DE1E7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		078A834A1F127F8B001DE1E7 /* Build configuration list for PBXNativeTarget "retrofireTests" */ = {
 			isa = XCConfigurationList;
@@ -529,6 +548,7 @@
 				078A834C1F127F8B001DE1E7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

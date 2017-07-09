@@ -6,6 +6,9 @@ target 'retrofire' do
   use_frameworks!
 
   # Pods for retrofire
+    pod 'Alamofire', '~> 4.4.0'
+    #pod 'Alamofire-Synchronous', '~> 4.0' # Remove if is not using
+    pod 'AlamofireObjectMapper'
 
   target 'retrofireTests' do
     inherit! :search_paths
