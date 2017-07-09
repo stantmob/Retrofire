@@ -1,0 +1,417 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		078A833D1F127F8B001DE1E7 /* retrofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 078A83331F127F8B001DE1E7 /* retrofire.framework */; };
+		078A83421F127F8B001DE1E7 /* retrofireTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078A83411F127F8B001DE1E7 /* retrofireTests.swift */; };
+		078A83441F127F8B001DE1E7 /* retrofire.h in Headers */ = {isa = PBXBuildFile; fileRef = 078A83361F127F8B001DE1E7 /* retrofire.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		078A833E1F127F8B001DE1E7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 078A832A1F127F8B001DE1E7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 078A83321F127F8B001DE1E7;
+			remoteInfo = retrofire;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		078A83331F127F8B001DE1E7 /* retrofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = retrofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		078A83361F127F8B001DE1E7 /* retrofire.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = retrofire.h; sourceTree = "<group>"; };
+		078A83371F127F8B001DE1E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		078A833C1F127F8B001DE1E7 /* retrofireTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = retrofireTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		078A83411F127F8B001DE1E7 /* retrofireTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = retrofireTests.swift; sourceTree = "<group>"; };
+		078A83431F127F8B001DE1E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		078A832F1F127F8B001DE1E7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		078A83391F127F8B001DE1E7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				078A833D1F127F8B001DE1E7 /* retrofire.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		078A83291F127F8B001DE1E7 = {
+			isa = PBXGroup;
+			children = (
+				078A83351F127F8B001DE1E7 /* retrofire */,
+				078A83401F127F8B001DE1E7 /* retrofireTests */,
+				078A83341F127F8B001DE1E7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		078A83341F127F8B001DE1E7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				078A83331F127F8B001DE1E7 /* retrofire.framework */,
+				078A833C1F127F8B001DE1E7 /* retrofireTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		078A83351F127F8B001DE1E7 /* retrofire */ = {
+			isa = PBXGroup;
+			children = (
+				078A83361F127F8B001DE1E7 /* retrofire.h */,
+				078A83371F127F8B001DE1E7 /* Info.plist */,
+			);
+			path = retrofire;
+			sourceTree = "<group>";
+		};
+		078A83401F127F8B001DE1E7 /* retrofireTests */ = {
+			isa = PBXGroup;
+			children = (
+				078A83411F127F8B001DE1E7 /* retrofireTests.swift */,
+				078A83431F127F8B001DE1E7 /* Info.plist */,
+			);
+			path = retrofireTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		078A83301F127F8B001DE1E7 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				078A83441F127F8B001DE1E7 /* retrofire.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		078A83321F127F8B001DE1E7 /* retrofire */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 078A83471F127F8B001DE1E7 /* Build configuration list for PBXNativeTarget "retrofire" */;
+			buildPhases = (
+				078A832E1F127F8B001DE1E7 /* Sources */,
+				078A832F1F127F8B001DE1E7 /* Frameworks */,
+				078A83301F127F8B001DE1E7 /* Headers */,
+				078A83311F127F8B001DE1E7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = retrofire;
+			productName = retrofire;
+			productReference = 078A83331F127F8B001DE1E7 /* retrofire.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		078A833B1F127F8B001DE1E7 /* retrofireTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 078A834A1F127F8B001DE1E7 /* Build configuration list for PBXNativeTarget "retrofireTests" */;
+			buildPhases = (
+				078A83381F127F8B001DE1E7 /* Sources */,
+				078A83391F127F8B001DE1E7 /* Frameworks */,
+				078A833A1F127F8B001DE1E7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				078A833F1F127F8B001DE1E7 /* PBXTargetDependency */,
+			);
+			name = retrofireTests;
+			productName = retrofireTests;
+			productReference = 078A833C1F127F8B001DE1E7 /* retrofireTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		078A832A1F127F8B001DE1E7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = Stant;
+				TargetAttributes = {
+					078A83321F127F8B001DE1E7 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = SWAFF648KE;
+						ProvisioningStyle = Automatic;
+					};
+					078A833B1F127F8B001DE1E7 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = SWAFF648KE;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 078A832D1F127F8B001DE1E7 /* Build configuration list for PBXProject "retrofire" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 078A83291F127F8B001DE1E7;
+			productRefGroup = 078A83341F127F8B001DE1E7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				078A83321F127F8B001DE1E7 /* retrofire */,
+				078A833B1F127F8B001DE1E7 /* retrofireTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		078A83311F127F8B001DE1E7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		078A833A1F127F8B001DE1E7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		078A832E1F127F8B001DE1E7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		078A83381F127F8B001DE1E7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				078A83421F127F8B001DE1E7 /* retrofireTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		078A833F1F127F8B001DE1E7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 078A83321F127F8B001DE1E7 /* retrofire */;
+			targetProxy = 078A833E1F127F8B001DE1E7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		078A83451F127F8B001DE1E7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		078A83461F127F8B001DE1E7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		078A83481F127F8B001DE1E7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = SWAFF648KE;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = retrofire/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.stant.retrofire;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		078A83491F127F8B001DE1E7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = SWAFF648KE;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = retrofire/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.stant.retrofire;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		078A834B1F127F8B001DE1E7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = SWAFF648KE;
+				INFOPLIST_FILE = retrofireTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.stant.retrofireTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		078A834C1F127F8B001DE1E7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = SWAFF648KE;
+				INFOPLIST_FILE = retrofireTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.stant.retrofireTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		078A832D1F127F8B001DE1E7 /* Build configuration list for PBXProject "retrofire" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				078A83451F127F8B001DE1E7 /* Debug */,
+				078A83461F127F8B001DE1E7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		078A83471F127F8B001DE1E7 /* Build configuration list for PBXNativeTarget "retrofire" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				078A83481F127F8B001DE1E7 /* Debug */,
+				078A83491F127F8B001DE1E7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		078A834A1F127F8B001DE1E7 /* Build configuration list for PBXNativeTarget "retrofireTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				078A834B1F127F8B001DE1E7 /* Debug */,
+				078A834C1F127F8B001DE1E7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 078A832A1F127F8B001DE1E7 /* Project object */;
+}
