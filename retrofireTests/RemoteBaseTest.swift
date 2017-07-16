@@ -16,11 +16,11 @@ import Nimble
 class RemoteBaseImpl: RemoteBase {
 
     func posts() -> Call<[ResponseObject]> {
-        let request = Request()
-        request.path = "https://jsonplaceholder.typicode.com/post"
+        let path = "https://jsonplaceholder.typicode.com/posts"
+        let request = RequestABuilder(path: path).build()
         return self.callList(request: request)
     }
-    
+
 }
 
 /**
@@ -35,7 +35,7 @@ private struct ResponseObjectApiField {
     static let body   = "body"
 }
 
-class ResponseObject: Mappable {
+class ResponseObject: MappableA {
     var userId: Int?
     var id: Int?
     var title: String?
