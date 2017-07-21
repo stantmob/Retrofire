@@ -23,35 +23,45 @@ public enum HTTPMethodEnumA: String {
 }
 
 public struct RequestA {
-    let path:           String
-    let headers:        [String:String]
-    let method:         HTTPMethod
-    let parameters:     [String:String]
-    let bodyParameters: [String:String]
+    var path:            String
+    let headers:         [String:String]
+    let method:          HTTPMethod
+    let queryParameters: [String:String]
+    let bodyParameters:  [String:String]
     
-    init(path: String, method: HTTPMethodEnumA, headers: [String:String], parameters: [String:String], bodyParameters: [String:String]) {
-        self.path           = path
-        self.method         = HTTPMethod.init(rawValue: method.rawValue)!
-        self.headers        = headers
-        self.parameters     = parameters
-        self.bodyParameters = bodyParameters
+    init(path: String, method: HTTPMethodEnumA, headers: [String:String], queryParameters: [String:String], bodyParameters: [String:String]) {
+        self.path            = path
+        self.method          = HTTPMethod.init(rawValue: method.rawValue)!
+        self.headers         = headers
+        self.queryParameters = queryParameters
+        self.bodyParameters  = bodyParameters
+    }
+    
+    public func pathWithQueryParameters() -> String {
+        if (queryParameters.count == 0) {
+            return self.path
+        }
+        
+        return queryParameters.reduce("\(self.path)?") { (value, map) in
+            return "\(value)\(map.key)=\(map.value)&"
+        }
     }
     
 }
 
 public class RequestABuilder {
-    let path:           String
-    var method:         HTTPMethodEnumA = HTTPMethodEnumA.get
-    var headers:        [String:String] = [:]
-    var parameters:     [String:String] = [:]
-    var bodyParameters: [String:String] = [:]
+    private let path:            String
+    private var method:          HTTPMethodEnumA = HTTPMethodEnumA.get
+    private var headers:         [String:String] = [:]
+    private var queryParameters: [String:String] = [:]
+    private var bodyParameters:  [String:String] = [:]
     
     public init(path: String) {
         self.path = path
     }
     
     public func build() -> RequestA {
-        return RequestA.init(path: path, method: method, headers: headers, parameters: parameters, bodyParameters: bodyParameters)
+        return RequestA.init(path: path, method: method, headers: headers, queryParameters: queryParameters, bodyParameters: bodyParameters)
     }
     
     public func method(_ method: HTTPMethodEnumA) -> RequestABuilder {
@@ -64,8 +74,8 @@ public class RequestABuilder {
         return self
     }
     
-    public func parameters(_ parameters: [String:String]) -> RequestABuilder {
-        self.parameters = parameters
+    public func queryParameters(_ queryParameters: [String:String]) -> RequestABuilder {
+        self.queryParameters = queryParameters
         return self
     }
     
@@ -87,11 +97,11 @@ public protocol MappableA: Mappable {}
 // TODO: Change class name to ParseMappableObject
 class ParseResponse<T: MappableA> {
     static func a(map: ErrorResponse) -> Void {
-        let m = Mirror.init(reflecting: ab)
-        for (name, value) in m.children {
-            guard let name = name else { continue }
-            print("\(name): \(type(of: value)) = '\(value)'")
-        }
+//        let m = Mirror.init(reflecting: ab)
+//        for (name, value) in m.children {
+//            guard let name = name else { continue }
+//            print("\(name): \(type(of: value)) = '\(value)'")
+//        }
     }
     
     static func parse(jsonObject: Any?) -> T? {
@@ -119,14 +129,52 @@ class ParseResponse<T: MappableA> {
  They need to inherit from RemoteBase.
  */
 public class RemoteBase {
-//    public func callSingle<A>(request: Request) -> Call<A> {
-//        return Call<A>(<#(Call<T>) -> Void#>)
-//    }
+    
+    public func callSingle<A: MappableA>(request: RequestA) -> Call<A> {
+        let alamofireFunc: (_ executable: Call<A>) -> Void = { exec in
+            Alamofire
+                .request(request.pathWithQueryParameters(), method: request.method, parameters: nil,
+                         encoding: JSONEncoding.default, headers: request.headers)
+                .responseJSON { dataResponse in
+                    
+                    switch(dataResponse.result) {
+                    case .success(let value):
+                        if self.isResponseStatus200NoErrorServer(response: dataResponse.response!) {
+                            
+                            let responseMapped: A? = ParseResponse<A>.parse(jsonObject: value)
+                            
+                            if let response = responseMapped {
+                                exec.success(result: response)
+                            } else {
+                                let detailMessage = "Error when try to map the \(A.self)"
+                                let errorResponse = ErrorResponse.init(statusCode: 0, url: "", detailMessage: detailMessage)
+                                exec.failed(error: errorResponse)
+                            }
+                            
+                            break
+                            
+                        } else {
+                            let url = dataResponse.request!.url!.absoluteString
+                            let statusCode = dataResponse.response!.statusCode
+                            let errorResponse = ErrorResponse(statusCode: statusCode, url: url, detailMessage: "")
+                            exec.failed(error: errorResponse)
+                            break
+                        }
+                        
+                    case .failure(let error):
+                        exec.failed()
+                        break
+                    }
+            }
+        }
+        
+        return Call<A>(alamofireFunc)
+    }
     
     public func callList<A: MappableA>(request: RequestA) -> Call<[A]> {
         let alamofireFunc: (_ executable: Call<[A]>) -> Void = { exec in
             Alamofire
-                .request(request.path, method: request.method, parameters: nil,
+                .request(request.pathWithQueryParameters(), method: request.method, parameters: nil,
                          encoding: JSONEncoding.default, headers: request.headers)
                 .responseJSON { dataResponse in
                     
