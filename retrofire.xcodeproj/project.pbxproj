@@ -14,7 +14,6 @@
 		076273A91F24E49B0081BCD2 /* Mappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076273A81F24E49B0081BCD2 /* Mappable.swift */; };
 		076273AB1F24E4D50081BCD2 /* ParseMappableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076273AA1F24E4D50081BCD2 /* ParseMappableObject.swift */; };
 		078A833D1F127F8B001DE1E7 /* retrofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 078A83331F127F8B001DE1E7 /* retrofire.framework */; };
-		078A83421F127F8B001DE1E7 /* retrofireTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078A83411F127F8B001DE1E7 /* retrofireTests.swift */; };
 		078A83441F127F8B001DE1E7 /* retrofire.h in Headers */ = {isa = PBXBuildFile; fileRef = 078A83361F127F8B001DE1E7 /* retrofire.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		078A834E1F12832D001DE1E7 /* RemoteBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078A834D1F12832D001DE1E7 /* RemoteBase.swift */; };
 		078A83501F12834D001DE1E7 /* RemoteBaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078A834F1F12834D001DE1E7 /* RemoteBaseTest.swift */; };
@@ -44,7 +43,6 @@
 		078A83361F127F8B001DE1E7 /* retrofire.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = retrofire.h; sourceTree = "<group>"; };
 		078A83371F127F8B001DE1E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		078A833C1F127F8B001DE1E7 /* retrofireTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = retrofireTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		078A83411F127F8B001DE1E7 /* retrofireTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = retrofireTests.swift; sourceTree = "<group>"; };
 		078A83431F127F8B001DE1E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		078A834D1F12832D001DE1E7 /* RemoteBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteBase.swift; sourceTree = "<group>"; };
 		078A834F1F12834D001DE1E7 /* RemoteBaseTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteBaseTest.swift; sourceTree = "<group>"; };
@@ -119,7 +117,6 @@
 			isa = PBXGroup;
 			children = (
 				078A834F1F12834D001DE1E7 /* RemoteBaseTest.swift */,
-				078A83411F127F8B001DE1E7 /* retrofireTests.swift */,
 				078A83431F127F8B001DE1E7 /* Info.plist */,
 			);
 			path = retrofireTests;
@@ -357,7 +354,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				078A83501F12834D001DE1E7 /* RemoteBaseTest.swift in Sources */,
-				078A83421F127F8B001DE1E7 /* retrofireTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
