@@ -48,7 +48,7 @@ public struct Request {
     ///         path            = "http://jsonplaceholder.typicode.com/posts/1/comments"
     ///         queryParameters = ["postId": "1", "email": "example@example.com"]
     ///
-    /// returns: "http://jsonplaceholder.typicode.com/comments?postId=1&email=example@example.com&"
+    /// - returns: "http://jsonplaceholder.typicode.com/comments?postId=1&email=example@example.com&"
     public func pathWithQueryParameters() -> String {
         if (queryParameters.count == 0) {
             return self.path

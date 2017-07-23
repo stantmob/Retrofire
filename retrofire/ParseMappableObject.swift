@@ -8,6 +8,7 @@
 
 import ObjectMapper
 
+/// Responsible to Parse the Result Objects
 class ParseMappableObject<T:Mappable> where T: Any {
     static func a(map: ErrorResponse) -> Void {
         //        let m = Mirror.init(reflecting: ab)
@@ -17,6 +18,11 @@ class ParseMappableObject<T:Mappable> where T: Any {
         //        }
     }
     
+    /// Creates a 'T' instance with the specified attributes from jsonObject.
+    ///
+    /// - parameter jsonObject: Could be any kind of JSON values.
+    ///
+    /// - returns: A new T instance with filled attributes got from jsonObject.
     static func parse(jsonObject: Any?) -> T? {
         if (T.self == Bool.self) {
             return true as? T
@@ -24,6 +30,11 @@ class ParseMappableObject<T:Mappable> where T: Any {
         return Mapper<T>().map(JSONObject: jsonObject)
     }
     
+    /// Creates a list of 'T' instance with the specified attributes from jsonObject.
+    ///
+    /// - parameter arrayJsonObject: Could be any kind of array of JSON values.
+    ///
+    /// - returns: A new list of T instance with filled attributes got from arrayJsonObject.
     static func parseList(arrayJsonObject: Any?) -> [T]? {
         if (arrayJsonObject == nil) {
             return nil
