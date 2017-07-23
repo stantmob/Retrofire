@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		076273A11F24E3D10081BCD2 /* HTTPMethodEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076273A01F24E3D10081BCD2 /* HTTPMethodEnum.swift */; };
+		076273A31F24E4000081BCD2 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076273A21F24E4000081BCD2 /* Request.swift */; };
+		076273A51F24E4330081BCD2 /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076273A41F24E4330081BCD2 /* RequestBuilder.swift */; };
+		076273A71F24E4800081BCD2 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076273A61F24E4800081BCD2 /* ErrorResponse.swift */; };
+		076273A91F24E49B0081BCD2 /* Mappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076273A81F24E49B0081BCD2 /* Mappable.swift */; };
+		076273AB1F24E4D50081BCD2 /* ParseMappableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076273AA1F24E4D50081BCD2 /* ParseMappableObject.swift */; };
 		078A833D1F127F8B001DE1E7 /* retrofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 078A83331F127F8B001DE1E7 /* retrofire.framework */; };
 		078A83421F127F8B001DE1E7 /* retrofireTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078A83411F127F8B001DE1E7 /* retrofireTests.swift */; };
 		078A83441F127F8B001DE1E7 /* retrofire.h in Headers */ = {isa = PBXBuildFile; fileRef = 078A83361F127F8B001DE1E7 /* retrofire.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -28,6 +34,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		076273A01F24E3D10081BCD2 /* HTTPMethodEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPMethodEnum.swift; sourceTree = "<group>"; };
+		076273A21F24E4000081BCD2 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		076273A41F24E4330081BCD2 /* RequestBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestBuilder.swift; sourceTree = "<group>"; };
+		076273A61F24E4800081BCD2 /* ErrorResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
+		076273A81F24E49B0081BCD2 /* Mappable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mappable.swift; sourceTree = "<group>"; };
+		076273AA1F24E4D50081BCD2 /* ParseMappableObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseMappableObject.swift; sourceTree = "<group>"; };
 		078A83331F127F8B001DE1E7 /* retrofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = retrofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		078A83361F127F8B001DE1E7 /* retrofire.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = retrofire.h; sourceTree = "<group>"; };
 		078A83371F127F8B001DE1E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -93,6 +105,12 @@
 				078A83511F128A56001DE1E7 /* Call.swift */,
 				078A83361F127F8B001DE1E7 /* retrofire.h */,
 				078A83371F127F8B001DE1E7 /* Info.plist */,
+				076273A01F24E3D10081BCD2 /* HTTPMethodEnum.swift */,
+				076273A21F24E4000081BCD2 /* Request.swift */,
+				076273A41F24E4330081BCD2 /* RequestBuilder.swift */,
+				076273A61F24E4800081BCD2 /* ErrorResponse.swift */,
+				076273A81F24E49B0081BCD2 /* Mappable.swift */,
+				076273AA1F24E4D50081BCD2 /* ParseMappableObject.swift */,
 			);
 			path = retrofire;
 			sourceTree = "<group>";
@@ -323,6 +341,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				076273AB1F24E4D50081BCD2 /* ParseMappableObject.swift in Sources */,
+				076273A51F24E4330081BCD2 /* RequestBuilder.swift in Sources */,
+				076273A91F24E49B0081BCD2 /* Mappable.swift in Sources */,
+				076273A11F24E3D10081BCD2 /* HTTPMethodEnum.swift in Sources */,
+				076273A31F24E4000081BCD2 /* Request.swift in Sources */,
+				076273A71F24E4800081BCD2 /* ErrorResponse.swift in Sources */,
 				078A834E1F12832D001DE1E7 /* RemoteBase.swift in Sources */,
 				078A83521F128A56001DE1E7 /* Call.swift in Sources */,
 			);
