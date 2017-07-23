@@ -8,10 +8,8 @@
 
 import Alamofire
 
-// @TODO: Make Request protected
-
 public struct Request {
-    var path:            String
+    let path:            String
     let headers:         [String:String]
     let method:          HTTPMethod
     let queryParameters: [String:String]
