@@ -8,33 +8,30 @@
 
 import ObjectMapper
 
+/// A type that is used to Map JSON Objects
 public protocol Mappable: ObjectMapper.Mappable {}
-
-//extension String: MappableA {
-////    public init?(map: Map) { super.init() }
-//    public mutating func mapping(map: Map) {
-//        self = (map.currentValue as? String)!
-//    }
-//}
 extension Bool: Mappable {
-    public /// This function can be used to validate JSON prior to mapping. Return nil to cancel mapping at this point
-    init?(map: Map) {
-        return nil
-    }
-    
-    //    public init?(map: Map) { super.init() }
+    /// This function can be used to validate JSON prior to mapping. Return nil to cancel mapping at this point
+    public init?(map: Map) { return nil }
     public mutating func mapping(map: Map) {
         self = (map.currentValue as? Bool)!
     }
 }
-//extension Int: MappableA {
-////    public init?(map: Map) { super.init() }
+//extension String: Mappable {
+//    public init?(map: Map) { return nil }
+//    public mutating func mapping(map: Map) {
+//        self = (map.currentValue as? String)!
+//    }
+//}
+
+//extension Int: Mappable {
+//    public init?(map: Map) { return nil }
 //    public mutating func mapping(map: Map) {
 //        self = (map.currentValue as? Int)!
 //    }
 //}
-//extension Float: MappableA {
-////    public init?(map: Map) {}
+//extension Float: Mappable {
+//    public init?(map: Map) { return nil }
 //    public mutating func mapping(map: Map) {
 //        self = (map.currentValue as? Float)!
 //    }
