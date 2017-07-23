@@ -9,14 +9,18 @@
 import Alamofire
 import ObjectMapper
 
-/**
- RemoteBase is a base class for all Remote classes Implementations will use HTTP requests.
- They need to inherit from RemoteBase.
- */
+
+/// RemoteBase is a base class for all Remote classes Implementations will use HTTP requests.
+/// They need to inherited from RemoteBase.
 public class RemoteBase {
     
-    public func callSingle<A:Mappable>(request: Request) -> Call<A> {
-        let alamofireFunc: (_ executable: Call<A>) -> Void = { exec in
+    /// Return a Call<ResponseObject> to be used on Remote classes implementations
+    ///
+    /// - parameter request: The request object to be used on Alamofire.request. 
+    ///
+    /// - returns: Return a Call<ResponseObject> with the result object based on ResponseObject or ErrorResponse (if Alamofire gets failures) inside the Call.
+    public func callSingle<ResponseObject:Mappable>(request: Request) -> Call<ResponseObject> {
+        let alamofireFunc: (_ executable: Call<ResponseObject>) -> Void = { exec in
             Alamofire
                 .request(request.pathWithQueryParameters(), method: request.method, parameters: request.bodyParameters,
                          encoding: JSONEncoding.default, headers: request.headers)
@@ -29,12 +33,12 @@ public class RemoteBase {
                             break
                         }
                         
-                        let responseMapped: A? = ParseMappableObject<A>.parse(jsonObject: value)
+                        let responseMapped: ResponseObject? = ParseMappableObject<ResponseObject>.parse(jsonObject: value)
                         
                         if let response = responseMapped {
                             exec.success(result: response)
                         } else {
-                            exec.failed(error: self.buildErrorResponseFromErroMap(klass: A.self))
+                            exec.failed(error: self.buildErrorResponseFromErroMap(klass: ResponseObject.self))
                         }
                         
                         break
@@ -45,11 +49,16 @@ public class RemoteBase {
             }
         }
         
-        return Call<A>(alamofireFunc)
+        return Call<ResponseObject>(alamofireFunc)
     }
     
-    public func callList<A:Mappable>(request: Request) -> Call<[A]> {
-        let alamofireFunc: (_ executable: Call<[A]>) -> Void = { exec in
+    /// Return a Call<[ResponseObject]> to be used on Remote classes implementations
+    ///
+    /// - parameter request: The request object to be used on Alamofire.request.
+    ///
+    /// - returns: Return a Call<[ResponseObject]> with the list of result objects based on ResponseObject or ErrorResponse (if Alamofire gets failures) inside the Call.
+    public func callList<ResponseObject:Mappable>(request: Request) -> Call<[ResponseObject]> {
+        let alamofireFunc: (_ executable: Call<[ResponseObject]>) -> Void = { exec in
             Alamofire
                 .request(request.pathWithQueryParameters(), method: request.method, parameters: request.bodyParameters,
                          encoding: JSONEncoding.default, headers: request.headers)
@@ -62,12 +71,12 @@ public class RemoteBase {
                             break
                         }
                         
-                        let responseMapped: [A]? = ParseMappableObject<A>.parseList(arrayJsonObject: value)
+                        let responseMapped: [ResponseObject]? = ParseMappableObject<ResponseObject>.parseList(arrayJsonObject: value)
                         
                         if let response = responseMapped {
                             exec.success(result: response)
                         } else {
-                            exec.failed(error: self.buildErrorResponseFromErroMap(klass: A.self))
+                            exec.failed(error: self.buildErrorResponseFromErroMap(klass: ResponseObject.self))
                         }
                         break
                         
@@ -78,7 +87,7 @@ public class RemoteBase {
             }
         }
         
-        return Call<[A]>(alamofireFunc)
+        return Call<[ResponseObject]>(alamofireFunc)
     }
     
     private func buildErrorResponseFromErroMap(klass: Any.Type) -> ErrorResponse {
