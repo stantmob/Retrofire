@@ -118,8 +118,8 @@
 		078A83401F127F8B001DE1E7 /* retrofireTests */ = {
 			isa = PBXGroup;
 			children = (
-				078A83411F127F8B001DE1E7 /* retrofireTests.swift */,
 				078A834F1F12834D001DE1E7 /* RemoteBaseTest.swift */,
+				078A83411F127F8B001DE1E7 /* retrofireTests.swift */,
 				078A83431F127F8B001DE1E7 /* Info.plist */,
 			);
 			path = retrofireTests;

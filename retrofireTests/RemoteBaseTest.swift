@@ -10,97 +10,6 @@ import Quick
 import Nimble
 @testable import retrofire
 
-/**
- Class implementation of RemoteBase to use for tests
- */
-class RemoteBaseImpl: RemoteBase {
-
-    func posts() -> Call<[ResponseObject]> {
-        let path = "https://jsonplaceholder.typicode.com/posts"
-        let request = RequestBuilder(path: path).build()
-        return self.callList(request: request)
-    }
-    
-    func postComments(postId: Int) -> Call<[ResponseObject]> {
-        let path = "http://jsonplaceholder.typicode.com/comments"
-        let request = RequestBuilder(path: path)
-            .queryParameters(["postId": postId.description])
-            .build()
-        return self.callList(request: request)
-    }
-    
-    func postsComments(postId: Int, email: String) -> Call<[ResponseObject]> {
-        let path = "http://jsonplaceholder.typicode.com/comments"
-        let request = RequestBuilder(path: path)
-            .queryParameters(["postId": postId.description, "email": email])
-            .build()
-        return self.callList(request: request)
-    }
-    
-    func findPost(id: Int) -> Call<ResponseObject> {
-        let path = "http://jsonplaceholder.typicode.com/posts/\(id)/"
-        let request = RequestBuilder(path: path)
-            .build()
-        return self.callSingle(request: request)
-    }
-    
-    func createPost(userId: Int, title: String, body: String) -> Call<ResponseObject> {
-        let path = "http://jsonplaceholder.typicode.com/posts"
-        let request = RequestBuilder(path: path)
-        .method(.post)
-        .bodyParameters(["userId": userId, "title": title, "body": body])
-        .build()
-        return self.callSingle(request: request)
-    }
-    
-    func updatePost(id: Int, userId: Int, title: String, body: String) -> Call<ResponseObject> {
-        let path = "http://jsonplaceholder.typicode.com/posts/\(id)"
-        let request = RequestBuilder(path: path)
-            .method(.put)
-            .bodyParameters(["userId": userId, "title": title, "body": body])
-            .build()
-        return self.callSingle(request: request)
-    }
-    
-    func deletePost(id: Int) -> Call<Bool> {
-        let path = "http://jsonplaceholder.typicode.com/posts/\(id)"
-        let request = RequestBuilder(path: path)
-            .method(.delete)
-            .build()
-        return self.callSingle(request: request)
-    }
-
-}
-
-/**
- Class to use as Response on tests
- */
-import ObjectMapper
-
-private struct ResponseObjectApiField {
-    static let userId = "userId"
-    static let id     = "id"
-    static let title  = "title"
-    static let body   = "body"
-}
-
-class ResponseObject: retrofire.Mappable {
-    var userId: Int?
-    var id: Int?
-    var title: String?
-    var body: String?
-
-    public required init?(map: Map) {}
-    init() {}
-    
-    public func mapping(map: Map) {
-        userId <- map[ResponseObjectApiField.userId]
-        id     <- map[ResponseObjectApiField.id]
-        title  <- map[ResponseObjectApiField.title]
-        body   <- map[ResponseObjectApiField.body]
-    }
-}
-
 class RemoteBaseTest: QuickSpec {
     override func spec() {
         let remoteBaseImpl = RemoteBaseImpl()
@@ -250,5 +159,89 @@ class RemoteBaseTest: QuickSpec {
             }
         }
         
+    }
+}
+
+/**
+ Class implementation of RemoteBase to use for tests
+ */
+class RemoteBaseImpl: RemoteBase {
+    
+    func posts() -> Call<[ResponseObject]> {
+        let path = "https://jsonplaceholder.typicode.com/posts"
+        let request = RequestBuilder(path: path).build()
+        return self.callList(request: request)
+    }
+    
+    func postComments(postId: Int) -> Call<[ResponseObject]> {
+        let path = "http://jsonplaceholder.typicode.com/comments"
+        let request = RequestBuilder(path: path)
+            .queryParameters(["postId": postId.description])
+            .build()
+        return self.callList(request: request)
+    }
+    
+    func postsComments(postId: Int, email: String) -> Call<[ResponseObject]> {
+        let path = "http://jsonplaceholder.typicode.com/comments"
+        let request = RequestBuilder(path: path)
+            .queryParameters(["postId": postId.description, "email": email])
+            .build()
+        return self.callList(request: request)
+    }
+    
+    func findPost(id: Int) -> Call<ResponseObject> {
+        let path = "http://jsonplaceholder.typicode.com/posts/\(id)/"
+        let request = RequestBuilder(path: path)
+            .build()
+        return self.callSingle(request: request)
+    }
+    
+    func createPost(userId: Int, title: String, body: String) -> Call<ResponseObject> {
+        let path = "http://jsonplaceholder.typicode.com/posts"
+        let request = RequestBuilder(path: path)
+            .method(.post)
+            .bodyParameters(["userId": userId, "title": title, "body": body])
+            .build()
+        return self.callSingle(request: request)
+    }
+    
+    func updatePost(id: Int, userId: Int, title: String, body: String) -> Call<ResponseObject> {
+        let path = "http://jsonplaceholder.typicode.com/posts/\(id)"
+        let request = RequestBuilder(path: path)
+            .method(.put)
+            .bodyParameters(["userId": userId, "title": title, "body": body])
+            .build()
+        return self.callSingle(request: request)
+    }
+    
+    func deletePost(id: Int) -> Call<Bool> {
+        let path = "http://jsonplaceholder.typicode.com/posts/\(id)"
+        let request = RequestBuilder(path: path)
+            .method(.delete)
+            .build()
+        return self.callSingle(request: request)
+    }
+    
+}
+
+/**
+ Class to use as Response on tests
+ */
+import ObjectMapper
+
+class ResponseObject: retrofire.Mappable {
+    var userId: Int?
+    var id: Int?
+    var title: String?
+    var body: String?
+    
+    public required init?(map: Map) {}
+    init() {}
+    
+    public func mapping(map: Map) {
+        userId <- map["userId"]
+        id     <- map["id"]
+        title  <- map["title"]
+        body   <- map["body"]
     }
 }
