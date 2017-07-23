@@ -27,9 +27,9 @@ public struct RequestA {
     let headers:         [String:String]
     let method:          HTTPMethod
     let queryParameters: [String:String]
-    let bodyParameters:  [String:String]
+    let bodyParameters:  [String:Any?]?
     
-    init(path: String, method: HTTPMethodEnumA, headers: [String:String], queryParameters: [String:String], bodyParameters: [String:String]) {
+    init(path: String, method: HTTPMethodEnumA, headers: [String:String], queryParameters: [String:String], bodyParameters: [String:Any?]?) {
         self.path            = path
         self.method          = HTTPMethod.init(rawValue: method.rawValue)!
         self.headers         = headers
@@ -54,7 +54,7 @@ public class RequestABuilder {
     private var method:          HTTPMethodEnumA = HTTPMethodEnumA.get
     private var headers:         [String:String] = [:]
     private var queryParameters: [String:String] = [:]
-    private var bodyParameters:  [String:String] = [:]
+    private var bodyParameters:  [String:Any?]? = nil
     
     public init(path: String) {
         self.path = path
@@ -79,7 +79,7 @@ public class RequestABuilder {
         return self
     }
     
-    public func bodyParameters(_ bodyParameters: [String:String]) -> RequestABuilder {
+    public func bodyParameters(_ bodyParameters: [String:Any?]) -> RequestABuilder {
         self.bodyParameters = bodyParameters
         return self
     }
@@ -94,8 +94,38 @@ public struct ErrorResponse {
 
 public protocol MappableA: Mappable {}
 
+//extension String: MappableA {
+////    public init?(map: Map) { super.init() }
+//    public mutating func mapping(map: Map) {
+//        self = (map.currentValue as? String)!
+//    }
+//}
+extension Bool: MappableA {
+    public /// This function can be used to validate JSON prior to mapping. Return nil to cancel mapping at this point
+    init?(map: Map) {
+        return nil
+    }
+
+//    public init?(map: Map) { super.init() }
+    public mutating func mapping(map: Map) {
+        self = (map.currentValue as? Bool)!
+    }
+}
+//extension Int: MappableA {
+////    public init?(map: Map) { super.init() }
+//    public mutating func mapping(map: Map) {
+//        self = (map.currentValue as? Int)!
+//    }
+//}
+//extension Float: MappableA {
+////    public init?(map: Map) {}
+//    public mutating func mapping(map: Map) {
+//        self = (map.currentValue as? Float)!
+//    }
+//}
+
 // TODO: Change class name to ParseMappableObject
-class ParseResponse<T: MappableA> {
+class ParseResponse<T: MappableA> where T: Any {
     static func a(map: ErrorResponse) -> Void {
 //        let m = Mirror.init(reflecting: ab)
 //        for (name, value) in m.children {
@@ -105,6 +135,9 @@ class ParseResponse<T: MappableA> {
     }
     
     static func parse(jsonObject: Any?) -> T? {
+        if (T.self == Bool.self) {
+            return true as? T
+        }
         return Mapper<T>().map(JSONObject: jsonObject)
     }
     
@@ -133,7 +166,7 @@ public class RemoteBase {
     public func callSingle<A: MappableA>(request: RequestA) -> Call<A> {
         let alamofireFunc: (_ executable: Call<A>) -> Void = { exec in
             Alamofire
-                .request(request.pathWithQueryParameters(), method: request.method, parameters: nil,
+                .request(request.pathWithQueryParameters(), method: request.method, parameters: request.bodyParameters,
                          encoding: JSONEncoding.default, headers: request.headers)
                 .responseJSON { dataResponse in
                     
@@ -146,23 +179,18 @@ public class RemoteBase {
                             if let response = responseMapped {
                                 exec.success(result: response)
                             } else {
-                                let detailMessage = "Error when try to map the \(A.self)"
-                                let errorResponse = ErrorResponse.init(statusCode: 0, url: "", detailMessage: detailMessage)
-                                exec.failed(error: errorResponse)
+                                exec.failed(error: self.buildErrorResponseFromErroMap(klass: A.self))
                             }
                             
                             break
                             
                         } else {
-                            let url = dataResponse.request!.url!.absoluteString
-                            let statusCode = dataResponse.response!.statusCode
-                            let errorResponse = ErrorResponse(statusCode: statusCode, url: url, detailMessage: "")
-                            exec.failed(error: errorResponse)
+                            exec.failed(error: self.buildErrorResponseFromDataResponse(dataResponse: dataResponse))
                             break
                         }
                         
                     case .failure(let error):
-                        exec.failed()
+                        exec.failed(error: self.buildErrorResponseFromDataResponse(dataResponse: dataResponse, detailMessage: error.localizedDescription))
                         break
                     }
             }
@@ -174,7 +202,7 @@ public class RemoteBase {
     public func callList<A: MappableA>(request: RequestA) -> Call<[A]> {
         let alamofireFunc: (_ executable: Call<[A]>) -> Void = { exec in
             Alamofire
-                .request(request.pathWithQueryParameters(), method: request.method, parameters: nil,
+                .request(request.pathWithQueryParameters(), method: request.method, parameters: request.bodyParameters,
                          encoding: JSONEncoding.default, headers: request.headers)
                 .responseJSON { dataResponse in
                     
@@ -187,38 +215,18 @@ public class RemoteBase {
                             if let response = responseMapped {
                                 exec.success(result: response)
                             } else {
-                                let detailMessage = "Error when try to map the \(A.self)"
-                                let errorResponse = ErrorResponse.init(statusCode: 0, url: "", detailMessage: detailMessage)
-                                exec.failed(error: errorResponse)
-                                //                                apiCallback(BaseCallback<[ConstructionSiteResponse]>.failed(error: "Erro when try to map the ConstructionSiteResponse"))
+                                exec.failed(error: self.buildErrorResponseFromErroMap(klass: A.self))
                             }
                             
                             break
             
                         } else {
-                            let url = dataResponse.request!.url!.absoluteString
-                            let statusCode = dataResponse.response!.statusCode
-                            let errorResponse = ErrorResponse(statusCode: statusCode, url: url, detailMessage: "")
-                            exec.failed(error: errorResponse)
-//                            let errorResponseMapped: ErrorResponseToMap? = ParseResponse<ErrorResponseToMap>.parse(jsonObject: value)
-                        
-//                            if let errorResponse = errorResponseMapped {
-//                                exec.failed()
-                                //                                exec.failed(error: errorResponse)
-//                            } else {
-//                                exec.failed()
-                                //                                apiCallback(BaseCallback<[ConstructionSiteResponse]>.failed(error: "Erro when try to map the AuthErrorResponse"))
-                                //                            }
-                                
-//                            }
+                            exec.failed(error: self.buildErrorResponseFromDataResponse(dataResponse: dataResponse))
                             break
                         }
                         
                     case .failure(let error):
-//                        let e: Error = error
-                        exec.failed()
-                        //                        let callbackFail = BaseCallback<[ConstructionSiteResponse]>.failed(error: error)
-                        //                        apiCallback(callbackFail)
+                        exec.failed(error: self.buildErrorResponseFromDataResponse(dataResponse: dataResponse, detailMessage: error.localizedDescription))
                         break
 //                    }
                     }
@@ -226,6 +234,17 @@ public class RemoteBase {
         }
         
         return Call<[A]>(alamofireFunc)
+    }
+    
+    private func buildErrorResponseFromErroMap(klass: Any.Type) -> ErrorResponse {
+        let detailMessage = "Error when try to map the \(klass)"
+        return ErrorResponse.init(statusCode: 0, url: "", detailMessage: detailMessage)
+    }
+    
+    private func buildErrorResponseFromDataResponse(dataResponse: DataResponse<Any>, detailMessage: String = "") -> ErrorResponse {
+        let url           = dataResponse.request!.url!.absoluteString
+        let statusCode    = dataResponse.response!.statusCode
+        return ErrorResponse(statusCode: statusCode, url: url, detailMessage: detailMessage)
     }
     
     private func isResponseStatus200NoErrorServer(response : HTTPURLResponse) -> Bool {
