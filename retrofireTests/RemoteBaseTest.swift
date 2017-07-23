@@ -17,13 +17,13 @@ class RemoteBaseImpl: RemoteBase {
 
     func posts() -> Call<[ResponseObject]> {
         let path = "https://jsonplaceholder.typicode.com/posts"
-        let request = RequestABuilder(path: path).build()
+        let request = RequestBuilder(path: path).build()
         return self.callList(request: request)
     }
     
     func postComments(postId: Int) -> Call<[ResponseObject]> {
         let path = "http://jsonplaceholder.typicode.com/comments"
-        let request = RequestABuilder(path: path)
+        let request = RequestBuilder(path: path)
             .queryParameters(["postId": postId.description])
             .build()
         return self.callList(request: request)
@@ -31,7 +31,7 @@ class RemoteBaseImpl: RemoteBase {
     
     func postsComments(postId: Int, email: String) -> Call<[ResponseObject]> {
         let path = "http://jsonplaceholder.typicode.com/comments"
-        let request = RequestABuilder(path: path)
+        let request = RequestBuilder(path: path)
             .queryParameters(["postId": postId.description, "email": email])
             .build()
         return self.callList(request: request)
@@ -39,14 +39,14 @@ class RemoteBaseImpl: RemoteBase {
     
     func findPost(id: Int) -> Call<ResponseObject> {
         let path = "http://jsonplaceholder.typicode.com/posts/\(id)/"
-        let request = RequestABuilder(path: path)
+        let request = RequestBuilder(path: path)
             .build()
         return self.callSingle(request: request)
     }
     
     func createPost(userId: Int, title: String, body: String) -> Call<ResponseObject> {
         let path = "http://jsonplaceholder.typicode.com/posts"
-        let request = RequestABuilder(path: path)
+        let request = RequestBuilder(path: path)
         .method(.post)
         .bodyParameters(["userId": userId, "title": title, "body": body])
         .build()
@@ -55,7 +55,7 @@ class RemoteBaseImpl: RemoteBase {
     
     func updatePost(id: Int, userId: Int, title: String, body: String) -> Call<ResponseObject> {
         let path = "http://jsonplaceholder.typicode.com/posts/\(id)"
-        let request = RequestABuilder(path: path)
+        let request = RequestBuilder(path: path)
             .method(.put)
             .bodyParameters(["userId": userId, "title": title, "body": body])
             .build()
@@ -64,7 +64,7 @@ class RemoteBaseImpl: RemoteBase {
     
     func deletePost(id: Int) -> Call<Bool> {
         let path = "http://jsonplaceholder.typicode.com/posts/\(id)"
-        let request = RequestABuilder(path: path)
+        let request = RequestBuilder(path: path)
             .method(.delete)
             .build()
         return self.callSingle(request: request)
@@ -84,7 +84,7 @@ private struct ResponseObjectApiField {
     static let body   = "body"
 }
 
-class ResponseObject: MappableA {
+class ResponseObject: retrofire.Mappable {
     var userId: Int?
     var id: Int?
     var title: String?

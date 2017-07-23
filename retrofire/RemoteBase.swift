@@ -10,7 +10,7 @@ import Alamofire
 import ObjectMapper
 
 /// HTTP method definitions.
-public enum HTTPMethodEnumA: String {
+public enum HTTPMethodEnum: String {
     case options = "OPTIONS"
     case get     = "GET"
     case head    = "HEAD"
@@ -22,14 +22,14 @@ public enum HTTPMethodEnumA: String {
     case connect = "CONNECT"
 }
 
-public struct RequestA {
+public struct Request {
     var path:            String
     let headers:         [String:String]
     let method:          HTTPMethod
     let queryParameters: [String:String]
     let bodyParameters:  [String:Any?]?
     
-    init(path: String, method: HTTPMethodEnumA, headers: [String:String], queryParameters: [String:String], bodyParameters: [String:Any?]?) {
+    init(path: String, method: HTTPMethodEnum, headers: [String:String], queryParameters: [String:String], bodyParameters: [String:Any?]?) {
         self.path            = path
         self.method          = HTTPMethod.init(rawValue: method.rawValue)!
         self.headers         = headers
@@ -49,9 +49,9 @@ public struct RequestA {
     
 }
 
-public class RequestABuilder {
+public class RequestBuilder {
     private let path:            String
-    private var method:          HTTPMethodEnumA = HTTPMethodEnumA.get
+    private var method:          HTTPMethodEnum = HTTPMethodEnum.get
     private var headers:         [String:String] = [:]
     private var queryParameters: [String:String] = [:]
     private var bodyParameters:  [String:Any?]? = nil
@@ -60,26 +60,26 @@ public class RequestABuilder {
         self.path = path
     }
     
-    public func build() -> RequestA {
-        return RequestA.init(path: path, method: method, headers: headers, queryParameters: queryParameters, bodyParameters: bodyParameters)
+    public func build() -> Request {
+        return Request.init(path: path, method: method, headers: headers, queryParameters: queryParameters, bodyParameters: bodyParameters)
     }
     
-    public func method(_ method: HTTPMethodEnumA) -> RequestABuilder {
+    public func method(_ method: HTTPMethodEnum) -> RequestBuilder {
         self.method = method
         return self
     }
     
-    public func headers(_ headers: [String:String]) -> RequestABuilder {
+    public func headers(_ headers: [String:String]) -> RequestBuilder {
         self.headers = headers
         return self
     }
     
-    public func queryParameters(_ queryParameters: [String:String]) -> RequestABuilder {
+    public func queryParameters(_ queryParameters: [String:String]) -> RequestBuilder {
         self.queryParameters = queryParameters
         return self
     }
     
-    public func bodyParameters(_ bodyParameters: [String:Any?]) -> RequestABuilder {
+    public func bodyParameters(_ bodyParameters: [String:Any?]) -> RequestBuilder {
         self.bodyParameters = bodyParameters
         return self
     }
@@ -92,7 +92,7 @@ public struct ErrorResponse {
     let detailMessage: String
 }
 
-public protocol MappableA: Mappable {}
+public protocol Mappable: ObjectMapper.Mappable {}
 
 //extension String: MappableA {
 ////    public init?(map: Map) { super.init() }
@@ -100,7 +100,7 @@ public protocol MappableA: Mappable {}
 //        self = (map.currentValue as? String)!
 //    }
 //}
-extension Bool: MappableA {
+extension Bool: Mappable {
     public /// This function can be used to validate JSON prior to mapping. Return nil to cancel mapping at this point
     init?(map: Map) {
         return nil
@@ -124,8 +124,7 @@ extension Bool: MappableA {
 //    }
 //}
 
-// TODO: Change class name to ParseMappableObject
-class ParseResponse<T: MappableA> where T: Any {
+class ParseMappableObject<T:Mappable> where T: Any {
     static func a(map: ErrorResponse) -> Void {
 //        let m = Mirror.init(reflecting: ab)
 //        for (name, value) in m.children {
@@ -162,7 +161,7 @@ class ParseResponse<T: MappableA> where T: Any {
  */
 public class RemoteBase {
     
-    public func callSingle<A: MappableA>(request: RequestA) -> Call<A> {
+    public func callSingle<A:Mappable>(request: Request) -> Call<A> {
         let alamofireFunc: (_ executable: Call<A>) -> Void = { exec in
             Alamofire
                 .request(request.pathWithQueryParameters(), method: request.method, parameters: request.bodyParameters,
@@ -176,7 +175,7 @@ public class RemoteBase {
                             break
                         }
                         
-                        let responseMapped: A? = ParseResponse<A>.parse(jsonObject: value)
+                        let responseMapped: A? = ParseMappableObject<A>.parse(jsonObject: value)
                         
                         if let response = responseMapped {
                             exec.success(result: response)
@@ -195,7 +194,7 @@ public class RemoteBase {
         return Call<A>(alamofireFunc)
     }
     
-    public func callList<A: MappableA>(request: RequestA) -> Call<[A]> {
+    public func callList<A:Mappable>(request: Request) -> Call<[A]> {
         let alamofireFunc: (_ executable: Call<[A]>) -> Void = { exec in
             Alamofire
                 .request(request.pathWithQueryParameters(), method: request.method, parameters: request.bodyParameters,
@@ -209,7 +208,7 @@ public class RemoteBase {
                             break
                         }
                         
-                        let responseMapped: [A]? = ParseResponse<A>.parseList(arrayJsonObject: value)
+                        let responseMapped: [A]? = ParseMappableObject<A>.parseList(arrayJsonObject: value)
                         
                         if let response = responseMapped {
                             exec.success(result: response)
