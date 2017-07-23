@@ -24,7 +24,6 @@ class RemoteBaseTest: QuickSpec {
                         .onSuccess() { responseObject in
                             response = responseObject
                         }
-                        .onFailed() { _ in }
                         .call()
                     
                     expect(response?.id).toEventually(equal(1))
@@ -43,7 +42,6 @@ class RemoteBaseTest: QuickSpec {
                     .onSuccess() { responseObjects in
                         responses = responseObjects
                         }
-                    .onFailed() { _ in }
                     .call()
                     
                     expect(responses?.count).toEventually(equal(100))
@@ -59,7 +57,6 @@ class RemoteBaseTest: QuickSpec {
                         .onSuccess() { responseObjects in
                             responses = responseObjects
                         }
-                        .onFailed() { _ in }
                         .call()
                     
                     expect(responses?.count).toEventually(equal(5))
@@ -76,7 +73,6 @@ class RemoteBaseTest: QuickSpec {
                         .onSuccess() { responseObjects in
                             responses = responseObjects
                         }
-                        .onFailed() { _ in }
                         .call()
                     
                     expect(responses?.count).toEventually(equal(1))
@@ -96,8 +92,8 @@ class RemoteBaseTest: QuickSpec {
                     remoteBaseImpl.createPost(userId: 1, title: "Some Title", body: "Some Body")
                         .onSuccess() { (responseObject) in
                             response = responseObject
-                    }
-                    .call()
+                        }
+                        .call()
                     
                     expect(response?.userId).toEventually(equal(1))
                     expect(response?.title).toEventually(equal("Some Title"))
@@ -116,8 +112,8 @@ class RemoteBaseTest: QuickSpec {
                     remoteBaseImpl.updatePost(id: 1, userId: 1, title: "Some Title", body: "Some Body")
                         .onSuccess() { (responseObject) in
                             response = responseObject
-                    }
-                    .call()
+                        }
+                        .call()
                     
                     expect(response?.userId).toEventually(equal(1))
                     expect(response?.title).toEventually(equal("Some Title"))
@@ -132,7 +128,7 @@ class RemoteBaseTest: QuickSpec {
                         .onFailed() { (error) in
                             response = error as? ErrorResponse
                         }
-                    .call()
+                        .call()
                     
                     expect(response?.statusCode).toEventually(equal(404))
                     expect(response?.url).toEventually(equal("http://jsonplaceholder.typicode.com/posts/102292"))
@@ -151,8 +147,8 @@ class RemoteBaseTest: QuickSpec {
                     remoteBaseImpl.deletePost(id: 1)
                         .onSuccess() { (responseObject) in
                             response = responseObject!
-                    }
-                    .call()
+                        }
+                        .call()
                     
                     expect(response).toEventually(equal(true))
                 }
