@@ -142,18 +142,17 @@ class ParseResponse<T: MappableA> where T: Any {
     }
     
     static func parseList(arrayJsonObject: Any?) -> [T]? {
-        if let array = arrayJsonObject {
-            var list = [T]()
-            for jsonObject in array as! [Any] {
-                let mapped = parse(jsonObject: jsonObject)
-                if let object = mapped {
-                    list.append(object)
-                }
-            }
-            return list
+        if (arrayJsonObject == nil) {
+            return nil
         }
         
-        return nil
+        return (arrayJsonObject as! [Any]).reduce([T]()) { (list, jsonObject) in
+            var newList = list
+            if let object = parse(jsonObject: jsonObject) {
+                newList.append(object)
+            }
+            return newList
+        }
     }
 }
 
@@ -172,23 +171,20 @@ public class RemoteBase {
                     
                     switch(dataResponse.result) {
                     case .success(let value):
-                        if self.isResponseStatus200NoErrorServer(response: dataResponse.response!) {
-                            
-                            let responseMapped: A? = ParseResponse<A>.parse(jsonObject: value)
-                            
-                            if let response = responseMapped {
-                                exec.success(result: response)
-                            } else {
-                                exec.failed(error: self.buildErrorResponseFromErroMap(klass: A.self))
-                            }
-                            
-                            break
-                            
-                        } else {
+                        if self.isErrorStatusCode(response: dataResponse.response!) {
                             exec.failed(error: self.buildErrorResponseFromDataResponse(dataResponse: dataResponse))
                             break
                         }
                         
+                        let responseMapped: A? = ParseResponse<A>.parse(jsonObject: value)
+                        
+                        if let response = responseMapped {
+                            exec.success(result: response)
+                        } else {
+                            exec.failed(error: self.buildErrorResponseFromErroMap(klass: A.self))
+                        }
+                        
+                        break
                     case .failure(let error):
                         exec.failed(error: self.buildErrorResponseFromDataResponse(dataResponse: dataResponse, detailMessage: error.localizedDescription))
                         break
@@ -208,27 +204,23 @@ public class RemoteBase {
                     
                     switch(dataResponse.result) {
                     case .success(let value):
-                        if self.isResponseStatus200NoErrorServer(response: dataResponse.response!) {
-                        
-                            let responseMapped: [A]? = ParseResponse<A>.parseList(arrayJsonObject: value)
-                        
-                            if let response = responseMapped {
-                                exec.success(result: response)
-                            } else {
-                                exec.failed(error: self.buildErrorResponseFromErroMap(klass: A.self))
-                            }
-                            
-                            break
-            
-                        } else {
+                        if self.isErrorStatusCode(response: dataResponse.response!) {
                             exec.failed(error: self.buildErrorResponseFromDataResponse(dataResponse: dataResponse))
                             break
                         }
                         
+                        let responseMapped: [A]? = ParseResponse<A>.parseList(arrayJsonObject: value)
+                        
+                        if let response = responseMapped {
+                            exec.success(result: response)
+                        } else {
+                            exec.failed(error: self.buildErrorResponseFromErroMap(klass: A.self))
+                        }
+                        break
+                        
                     case .failure(let error):
                         exec.failed(error: self.buildErrorResponseFromDataResponse(dataResponse: dataResponse, detailMessage: error.localizedDescription))
                         break
-//                    }
                     }
             }
         }
@@ -242,16 +234,13 @@ public class RemoteBase {
     }
     
     private func buildErrorResponseFromDataResponse(dataResponse: DataResponse<Any>, detailMessage: String = "") -> ErrorResponse {
-        let url           = dataResponse.request!.url!.absoluteString
-        let statusCode    = dataResponse.response!.statusCode
+        let url        = dataResponse.request!.url!.absoluteString
+        let statusCode = dataResponse.response!.statusCode
         return ErrorResponse(statusCode: statusCode, url: url, detailMessage: detailMessage)
     }
     
-    private func isResponseStatus200NoErrorServer(response : HTTPURLResponse) -> Bool {
-        if isResponseStatusCodeSuccess(response: response) {
-            return true
-        }
-        return false
+    private func isErrorStatusCode(response : HTTPURLResponse) -> Bool {
+        return !isResponseStatusCodeSuccess(response: response)
     }
     
     private func isResponseStatusCodeSuccess(response : HTTPURLResponse) -> Bool{
@@ -261,14 +250,14 @@ public class RemoteBase {
             || response.statusCode == 304
     }
     
-    private func isInvalidResponseStatusCode(response: HTTPURLResponse?) -> Bool{
-        if response != nil {
-            return response!.statusCode == 500
-                || response!.statusCode == 401
-                || response!.statusCode == 403
-        }
-        
-        return false
-    }
+//    private func isInvalidResponseStatusCode(response: HTTPURLResponse?) -> Bool{
+//        if response == nil {
+//            return false
+//        }
+//        
+//        return response!.statusCode == 500
+//            || response!.statusCode == 401
+//            || response!.statusCode == 403
+//    }
     
 }
