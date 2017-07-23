@@ -8,6 +8,9 @@
 
 import Alamofire
 
+/// Builder for the Request Struct with some default values
+///
+/// Is recommended to use that Builder insted Request Struct directly
 public class RequestBuilder {
     private let path:            String
     private var method:          HTTPMethodEnum = HTTPMethodEnum.get
