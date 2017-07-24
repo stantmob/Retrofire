@@ -12,7 +12,9 @@ import ObjectMapper
 
 /// RemoteBase is a base class for all Remote classes Implementations will use HTTP requests.
 /// They need to inherited from RemoteBase.
-public class RemoteBase {
+open class RemoteBase {
+    
+    public init() {}
     
     /// Return a Call<ResponseObject> to be used on Remote classes implementations
     ///
