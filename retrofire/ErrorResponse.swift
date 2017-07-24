@@ -8,7 +8,7 @@
 
 /// Responsible to know and keep all necessary attributes to use on RemoteBase failures
 public struct ErrorResponse {
-    let statusCode: Int
-    let url: String
-    let detailMessage: String
+    public let statusCode: Int
+    public let url: String
+    public let detailMessage: String
 }
