@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/rogalabs/Documents/Workspaces/rogalabs-workspace/ios-workspace/retrofire/Retrofire.xcodeproj">
+      location = "group:Retrofire.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
