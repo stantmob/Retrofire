@@ -98,8 +98,16 @@ open class RemoteBase {
     }
     
     private func buildErrorResponseFromDataResponse(dataResponse: DataResponse<Any>, detailMessage: String = "") -> ErrorResponse {
-        let url        = dataResponse.request!.url!.absoluteString
-        let statusCode = dataResponse.response!.statusCode
+        var url        = ""
+        var statusCode = 0
+        
+        if let requestUrl = dataResponse.request?.url?.absoluteString {
+            url = requestUrl
+        }
+        if let requestStatusCode = dataResponse.response?.statusCode {
+            statusCode = requestStatusCode
+        }
+        
         return ErrorResponse(statusCode: statusCode, url: url, detailMessage: detailMessage)
     }
     

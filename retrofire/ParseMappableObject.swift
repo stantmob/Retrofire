@@ -27,6 +27,11 @@ class ParseMappableObject<T:Mappable> where T: Any {
         if (T.self == Bool.self) {
             return true as? T
         }
+        
+        if (T.self == String.self) {
+            return jsonObject as? T
+        }
+        
         return Mapper<T>().map(JSONObject: jsonObject)
     }
     

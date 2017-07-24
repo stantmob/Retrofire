@@ -17,22 +17,21 @@ extension Bool: Mappable {
         self = (map.currentValue as? Bool)!
     }
 }
-//extension String: Mappable {
-//    public init?(map: Map) { return nil }
-//    public mutating func mapping(map: Map) {
-//        self = (map.currentValue as? String)!
-//    }
-//}
-
-//extension Int: Mappable {
-//    public init?(map: Map) { return nil }
-//    public mutating func mapping(map: Map) {
-//        self = (map.currentValue as? Int)!
-//    }
-//}
-//extension Float: Mappable {
-//    public init?(map: Map) { return nil }
-//    public mutating func mapping(map: Map) {
-//        self = (map.currentValue as? Float)!
-//    }
-//}
+extension String: Mappable {
+    public init?(map: Map) { return nil }
+    public mutating func mapping(map: Map) {
+        self = (map.currentValue as? String)!
+    }
+}
+extension Int: Mappable {
+    public init?(map: Map) { return nil }
+    public mutating func mapping(map: Map) {
+        self = (map.currentValue as? Int)!
+    }
+}
+extension Float: Mappable {
+    public init?(map: Map) { return nil }
+    public mutating func mapping(map: Map) {
+        self = (map.currentValue as? Float)!
+    }
+}
