@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   #  summary should be tweet-length, and the description more in depth.
   #
 
-  s.name         = "retrofire"
+  s.name         = "Retrofire"
   s.version      = "0.0.1"
   s.summary      = "Simply and elegant HTTP Networking in Swift. Based on Alamofire and Retrofit"
 
@@ -88,7 +88,7 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "retrofire", "retrofire/**/*.{h,m}", "retrofire/**/*.swift"
+  s.source_files  = "Retrofire", "Retrofire/**/*.{h,m}", "Retrofire/**/*.swift"
   s.exclude_files = "Classes/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"

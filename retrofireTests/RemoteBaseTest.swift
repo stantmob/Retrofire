@@ -8,7 +8,7 @@
 
 import Quick
 import Nimble
-@testable import retrofire
+@testable import Retrofire
 
 class RemoteBaseTest: QuickSpec {
     override func spec() {
@@ -225,7 +225,7 @@ class RemoteBaseImpl: RemoteBase {
  */
 import ObjectMapper
 
-class ResponseObject: retrofire.Mappable {
+class ResponseObject: Retrofire.Mappable {
     var userId: Int?
     var id: Int?
     var title: String?

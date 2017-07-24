@@ -1,7 +1,7 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
-target 'retrofire' do
+target 'Retrofire' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
@@ -10,7 +10,7 @@ target 'retrofire' do
     #pod 'Alamofire-Synchronous', '~> 4.0' # Remove if is not using
     pod 'AlamofireObjectMapper'
 
-  target 'retrofireTests' do
+  target 'RetrofireTests' do
     inherit! :search_paths
     # Pods for testing
     pod 'Quick'
