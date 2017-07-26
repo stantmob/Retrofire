@@ -146,7 +146,7 @@ class RemoteBaseTest: QuickSpec {
                     var response: Bool = false
                     remoteBaseImpl.deletePost(id: 1)
                         .onSuccess() { (responseObject) in
-                            response = responseObject!
+                            response = true
                         }
                         .call()
                     
@@ -210,7 +210,7 @@ class RemoteBaseImpl: RemoteBase {
         return self.callSingle(request: request)
     }
     
-    func deletePost(id: Int) -> Call<Bool> {
+    func deletePost(id: Int) -> Call<Default> {
         let path = "http://jsonplaceholder.typicode.com/posts/\(id)"
         let request = RequestBuilder(path: path)
             .method(.delete)
@@ -223,7 +223,7 @@ class RemoteBaseImpl: RemoteBase {
 /**
  Class to use as Response on tests
  */
-import ObjectMapper
+import SwiftyJSON
 
 class ResponseObject: Retrofire.Mappable {
     var userId: Int?
@@ -231,13 +231,12 @@ class ResponseObject: Retrofire.Mappable {
     var title: String?
     var body: String?
     
-    public required init?(map: Map) {}
-    init() {}
+    required init() {}
     
-    public func mapping(map: Map) {
-        userId <- map["userId"]
-        id     <- map["id"]
-        title  <- map["title"]
-        body   <- map["body"]
+    func map(json: JSON) {
+        userId = json.dictionary?["userId"]?.int
+        id     = json.dictionary?["id"]?.int
+        title  = json.dictionary?["title"]?.string
+        body   = json.dictionary?["body"]?.string
     }
 }

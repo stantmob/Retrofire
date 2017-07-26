@@ -7,8 +7,7 @@ target 'Retrofire' do
 
   # Pods for retrofire
     pod 'Alamofire', '~> 4.4.0'
-    #pod 'Alamofire-Synchronous', '~> 4.0' # Remove if is not using
-    pod 'AlamofireObjectMapper'
+    pod 'SwiftyJSON'
 
   target 'RetrofireTests' do
     inherit! :search_paths

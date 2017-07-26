@@ -6,32 +6,42 @@
 //  Copyright © 2017 Stant. All rights reserved.
 //
 
-import ObjectMapper
+import SwiftyJSON
 
 /// A type that is used to Map JSON Objects
-public protocol Mappable: ObjectMapper.Mappable {}
-extension Bool: Mappable {
-    /// This function can be used to validate JSON prior to mapping. Return nil to cancel mapping at this point
-    public init?(map: Map) { return nil }
-    public mutating func mapping(map: Map) {
-        self = (map.currentValue as? Bool)!
+public protocol Mappable {
+    init()
+    mutating func map(json: JSON)
+}
+
+struct Default: Mappable {
+    var json: JSON?
+    
+    init() {}
+    
+    public mutating func map(json: JSON) {
+        self.json = json
     }
 }
+
+extension Bool: Mappable {
+    public mutating func map(json: JSON) {
+        self = json.boolValue
+    }
+
+}
 extension String: Mappable {
-    public init?(map: Map) { return nil }
-    public mutating func mapping(map: Map) {
-        self = (map.currentValue as? String)!
+    public mutating func map(json: JSON) {
+        self = json.stringValue
     }
 }
 extension Int: Mappable {
-    public init?(map: Map) { return nil }
-    public mutating func mapping(map: Map) {
-        self = (map.currentValue as? Int)!
+    public mutating func map(json: JSON) {
+        self = json.intValue
     }
 }
 extension Float: Mappable {
-    public init?(map: Map) { return nil }
-    public mutating func mapping(map: Map) {
-        self = (map.currentValue as? Float)!
+    public mutating func map(json: JSON) {
+        self = json.floatValue
     }
 }

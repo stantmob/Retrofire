@@ -6,10 +6,10 @@
 //  Copyright © 2017 Stant. All rights reserved.
 //
 
-import ObjectMapper
+import SwiftyJSON
 
 /// Responsible to Parse the Result Objects
-class ParseMappableObject<T:Mappable> where T: Any {
+class ParseMappableObject<T: Mappable> where T: Any {
     static func a(map: ErrorResponse) -> Void {
         //        let m = Mirror.init(reflecting: ab)
         //        for (name, value) in m.children {
@@ -24,15 +24,16 @@ class ParseMappableObject<T:Mappable> where T: Any {
     ///
     /// - returns: A new T instance with filled attributes got from jsonObject.
     static func parse(jsonObject: Any?) -> T? {
-        if (T.self == Bool.self) {
-            return true as? T
+        if (jsonObject == nil) {
+            return nil
         }
         
-        if (T.self == String.self) {
-            return jsonObject as? T
-        }
+        let json: JSON = JSON(jsonObject!)
         
-        return Mapper<T>().map(JSONObject: jsonObject)
+        var instance = T()
+        instance.map(json: json)
+        
+        return instance
     }
     
     /// Creates a list of 'T' instance with the specified attributes from jsonObject.

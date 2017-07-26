@@ -7,8 +7,7 @@
 //
 
 import Alamofire
-import ObjectMapper
-
+import SwiftyJSON
 
 /// RemoteBase is a base class for all Remote classes Implementations will use HTTP requests.
 /// They need to inherited from RemoteBase.
@@ -21,7 +20,7 @@ open class RemoteBase {
     /// - parameter request: The request object to be used on Alamofire.request. 
     ///
     /// - returns: Return a Call<ResponseObject> with the result object based on ResponseObject or ErrorResponse (if Alamofire gets failures) inside the Call.
-    public func callSingle<ResponseObject:Mappable>(request: Request) -> Call<ResponseObject> {
+    public func callSingle<ResponseObject: Mappable>(request: Request) -> Call<ResponseObject> {
         let alamofireFunc: (_ executable: Call<ResponseObject>) -> Void = { exec in
             Alamofire
                 .request(request.pathWithQueryParameters(), method: request.method, parameters: request.bodyParameters,
@@ -35,7 +34,7 @@ open class RemoteBase {
                             break
                         }
                         
-                        let responseMapped: ResponseObject? = ParseMappableObject<ResponseObject>.parse(jsonObject: value)
+                        let responseMapped = ParseMappableObject<ResponseObject>.parse(jsonObject: value)
                         
                         if let response = responseMapped {
                             exec.success(result: response)
