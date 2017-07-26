@@ -28,12 +28,7 @@ class ParseMappableObject<T: Mappable> where T: Any {
             return nil
         }
         
-        let json: JSON = JSON(jsonObject!)
-        
-        var instance = T()
-        instance.map(json: json)
-        
-        return instance
+        return T.instanceBy(json: JSON(jsonObject!))
     }
     
     /// Creates a list of 'T' instance with the specified attributes from jsonObject.

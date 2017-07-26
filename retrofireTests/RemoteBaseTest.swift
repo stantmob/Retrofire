@@ -225,18 +225,18 @@ class RemoteBaseImpl: RemoteBase {
  */
 import SwiftyJSON
 
-class ResponseObject: Retrofire.Mappable {
-    var userId: Int?
-    var id: Int?
-    var title: String?
-    var body: String?
+struct ResponseObject: Retrofire.Mappable {
+    let userId: Int?
+    let id: Int?
+    let title: String?
+    let body: String?
     
-    required init() {}
-    
-    func map(json: JSON) {
-        userId = json.dictionary?["userId"]?.int
-        id     = json.dictionary?["id"]?.int
-        title  = json.dictionary?["title"]?.string
-        body   = json.dictionary?["body"]?.string
+    static func instanceBy<M>(json: JSON) -> M {
+        let userId = json.dictionary?["userId"]?.int
+        let id     = json.dictionary?["id"]?.int
+        let title  = json.dictionary?["title"]?.string
+        let body   = json.dictionary?["body"]?.string
+        
+        return ResponseObject.init(userId: userId, id: id, title: title, body: body) as! M
     }
 }

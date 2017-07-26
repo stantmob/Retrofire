@@ -68,6 +68,7 @@ open class RemoteBase {
                     switch(dataResponse.result) {
                     case .success(let value):
                         if self.isErrorStatusCode(response: dataResponse.response!) {
+                            // TODO: Try to mapp some Custom or Default Error. If fail call the :buildErrorResponseFromDataResponse func
                             exec.failed(error: self.buildErrorResponseFromDataResponse(dataResponse: dataResponse))
                             break
                         }

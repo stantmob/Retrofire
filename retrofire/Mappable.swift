@@ -10,38 +10,35 @@ import SwiftyJSON
 
 /// A type that is used to Map JSON Objects
 public protocol Mappable {
-    init()
-    mutating func map(json: JSON)
+    static func instanceBy<M>(json: JSON) -> M
 }
 
 struct Default: Mappable {
-    var json: JSON?
+    let json: JSON
     
-    init() {}
-    
-    public mutating func map(json: JSON) {
-        self.json = json
+    static func instanceBy<M>(json: JSON) -> M {
+        return Default(json: json) as! M
     }
 }
 
 extension Bool: Mappable {
-    public mutating func map(json: JSON) {
-        self = json.boolValue
+    public static func instanceBy<M>(json: JSON) -> M {
+        return json.boolValue as! M
     }
 
 }
 extension String: Mappable {
-    public mutating func map(json: JSON) {
-        self = json.stringValue
+    public static func instanceBy<M>(json: JSON) -> M {
+        return json.stringValue as! M
     }
 }
 extension Int: Mappable {
-    public mutating func map(json: JSON) {
-        self = json.intValue
+    public static func instanceBy<M>(json: JSON) -> M {
+        return json.intValue as! M
     }
 }
 extension Float: Mappable {
-    public mutating func map(json: JSON) {
-        self = json.floatValue
+    public static func instanceBy<M>(json: JSON) -> M {
+        return json.floatValue as! M
     }
 }
