@@ -144,7 +144,8 @@ class RemoteBaseTest: QuickSpec {
                 
                 it("Should delete successfully") {
                     var response: Bool = false
-                    remoteBaseImpl.deletePost(id: 1)
+                    remoteBaseImpl
+                        .deletePost(id: 1)
                         .onSuccess() { (responseObject) in
                             response = true
                         }
