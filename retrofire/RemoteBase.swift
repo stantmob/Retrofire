@@ -12,8 +12,19 @@ import SwiftyJSON
 /// RemoteBase is a base class for all Remote classes Implementations will use HTTP requests.
 /// They need to inherited from RemoteBase.
 open class RemoteBase {
+    var customErrorClass: Mappable.Type?
     
     public init() {}
+    
+    /// Return the current instance of RemoteBase
+    ///
+    /// - parameter klass: The Custom error class to used to Parse the error on Alamofire.request
+    ///
+    /// - returns: Return RemoteBase current instance
+    public func withCustomErrorClass(_ klass: Mappable.Type) -> RemoteBase {
+        customErrorClass = klass
+        return self
+    }
     
     /// Return a Call<ResponseObject> to be used on Remote classes implementations
     ///
@@ -30,7 +41,14 @@ open class RemoteBase {
                     switch(dataResponse.result) {
                     case .success(let value):
                         if self.isErrorStatusCode(response: dataResponse.response!) {
-                            exec.failed(error: self.buildErrorResponseFromDataResponse(dataResponse: dataResponse))
+                            if let errorClass = self.customErrorClass {
+                                let error: Mappable = errorClass.instanceBy(json: JSON(value))
+                                
+                                exec.failed(error: error)
+                                self.resetCustomErrorClass()
+                            } else {
+                                exec.failed(error: self.buildErrorResponseFromDataResponse(dataResponse: dataResponse))
+                            }
                             break
                         }
                         
@@ -68,8 +86,14 @@ open class RemoteBase {
                     switch(dataResponse.result) {
                     case .success(let value):
                         if self.isErrorStatusCode(response: dataResponse.response!) {
-                            // TODO: Try to mapp some Custom or Default Error. If fail call the :buildErrorResponseFromDataResponse func
-                            exec.failed(error: self.buildErrorResponseFromDataResponse(dataResponse: dataResponse))
+                            if let errorClass = self.customErrorClass {
+                                let error: Mappable = errorClass.instanceBy(json: JSON(value))
+                                
+                                exec.failed(error: error)
+                                self.resetCustomErrorClass()
+                            } else {
+                                exec.failed(error: self.buildErrorResponseFromDataResponse(dataResponse: dataResponse))
+                            }
                             break
                         }
                         
@@ -92,15 +116,24 @@ open class RemoteBase {
         return Call<[ResponseObject]>(alamofireFunc)
     }
     
+    
+    private func resetCustomErrorClass() {
+        customErrorClass = nil
+    }
+    
     private func buildErrorResponseFromErroMap(klass: Any.Type) -> ErrorResponse {
         let detailMessage = "Error when try to map the \(klass)"
         return ErrorResponse.init(statusCode: 0, url: "", detailMessage: detailMessage)
     }
     
     private func buildErrorResponseFromDataResponse(dataResponse: DataResponse<Any>, detailMessage: String = "") -> ErrorResponse {
-        var url        = ""
-        var statusCode = 0
+        var url           = ""
+        var statusCode    = 0
+        var detailMessage = detailMessage
         
+        if let value = dataResponse.value {
+            detailMessage = (value as AnyObject).debugDescription
+        }
         if let requestUrl = dataResponse.request?.url?.absoluteString {
             url = requestUrl
         }

@@ -132,7 +132,7 @@ class RemoteBaseTest: QuickSpec {
                     
                     expect(response?.statusCode).toEventually(equal(404))
                     expect(response?.url).toEventually(equal("http://jsonplaceholder.typicode.com/posts/102292"))
-                    expect(response?.detailMessage).toEventually(equal(""))
+                    expect(response?.detailMessage).toEventually(equal("{\n}"))
                 }
             }
             
@@ -156,13 +156,41 @@ class RemoteBaseTest: QuickSpec {
             }
         }
         
+        describe("When pass custom Error class") {
+            
+            it("Should return error response object") {
+                var response: CustomErrorResponse?
+                remoteBaseImpl.constructionSites()
+                    .onFailed() { error in
+                        response = error as? CustomErrorResponse
+                    }
+                    .call()
+                
+                expect(response?.responseType).toEventually(equal("error"))
+                expect(response?.message).toEventually(equal("OAuth error: unauthorized"))
+                
+            }
+
+        }
+        
     }
 }
+
 
 /**
  Class implementation of RemoteBase to use for tests
  */
 class RemoteBaseImpl: RemoteBase {
+    
+    func constructionSites() -> Call<[ResponseObject]> {
+        let path = "http://stage.stant.com.br/api/v1/construction_sites"
+        let request = RequestBuilder(path: path)
+            .headers(["Authorization": "Beare some-beaerer"])
+            .build()
+        return self
+            .withCustomErrorClass(CustomErrorResponse.self)
+            .callList(request: request)
+    }
     
     func posts() -> Call<[ResponseObject]> {
         let path = "https://jsonplaceholder.typicode.com/posts"
@@ -222,7 +250,7 @@ class RemoteBaseImpl: RemoteBase {
 }
 
 /**
- Class to use as Response on tests
+ Struct to use as Response on tests
  */
 import SwiftyJSON
 
@@ -239,5 +267,23 @@ struct ResponseObject: Retrofire.Mappable {
         let body   = json.dictionary?["body"]?.string
         
         return ResponseObject.init(userId: userId, id: id, title: title, body: body) as! M
+    }
+}
+
+/**
+ Struct to use as ErrorResponse on tests
+ */
+
+struct CustomErrorResponse: Retrofire.Mappable {
+    let responseType: String?
+    let message: String?
+    let trace: [String]?
+    
+    static func instanceBy<M>(json: JSON) -> M {
+        let responseType = json.dictionary?["response_type"]?.stringValue
+        let message      = json.dictionary?["message"]?.stringValue
+        let trace        = json.dictionary?["trace"]?.arrayObject as? [String]
+        
+        return CustomErrorResponse.init(responseType: responseType, message: message, trace: trace) as! M
     }
 }
