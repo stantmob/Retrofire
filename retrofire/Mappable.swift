@@ -16,7 +16,7 @@ public protocol Mappable {
 public struct Default: Mappable {
     let json: JSON
 
-    static func instanceBy<M>(json: JSON) -> M {
+    public static func instanceBy<M>(json: JSON) -> M {
         return Default(json: json) as! M
     }
 }
