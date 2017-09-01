@@ -13,10 +13,10 @@ public protocol Mappable {
     static func instanceBy<M>(json: JSON) -> M
 }
 
-struct Default: Mappable {
+public struct Default: Mappable {
     let json: JSON
-    
-    static func instanceBy<M>(json: JSON) -> M {
+
+    public static func instanceBy<M>(json: JSON) -> M {
         return Default(json: json) as! M
     }
 }
