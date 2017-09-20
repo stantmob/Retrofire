@@ -18,7 +18,7 @@ public class Call<ResultObject> {
     /// Closure responsible to keep the failure block until be called on :callback closure on :call method
     private var resultFailureCallback: ((Any?) -> Void)?
     
-    init(_ callback: @escaping (Call<ResultObject>) -> Void) {
+    public init(_ callback: @escaping (Call<ResultObject>) -> Void) {
         self.callback = callback
     }
     
