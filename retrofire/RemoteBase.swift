@@ -13,6 +13,7 @@ import SwiftyJSON
 /// They need to inherited from RemoteBase.
 open class RemoteBase {
     var customErrorClass: Mappable.Type?
+    var alamofireManager : Alamofire.SessionManager?
     
     public init() {}
     
@@ -33,7 +34,12 @@ open class RemoteBase {
     /// - returns: Return a Call<ResponseObject> with the result object based on ResponseObject or ErrorResponse (if Alamofire gets failures) inside the Call.
     public func callSingle<ResponseObject: Mappable>(request: Request) -> Call<ResponseObject> {
         let alamofireFunc: (_ executable: Call<ResponseObject>) -> Void = { exec in
-            Alamofire
+            let configuration = URLSessionConfiguration.default
+            configuration.timeoutIntervalForRequest = 300 // seconds - 10800
+            
+            self.alamofireManager = Alamofire.SessionManager(configuration: configuration)
+            
+            self.alamofireManager!
                 .request(request.pathWithQueryParameters(), method: request.method, parameters: request.bodyParameters,
                          encoding: JSONEncoding.default, headers: request.headers)
                 .responseJSON { dataResponse in
