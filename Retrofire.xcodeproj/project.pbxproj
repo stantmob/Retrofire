@@ -22,6 +22,9 @@
 		C0FC7B8D2195099FB1330ACB /* Pods_retrofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC59058679A53250CE99F9C8 /* Pods_retrofire.framework */; };
 		C5A2CE2F1F3E1B699804716A /* Pods_Retrofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F9B8864D1BBC90C3CBDBDA9 /* Pods_Retrofire.framework */; };
 		C8156E1BE64828BFFA322ED6 /* Pods_RetrofireTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94FD2E4CB6D7724DFDE262B1 /* Pods_RetrofireTests.framework */; };
+		F4467148209BA3700010A64C /* ResponseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4467146209BA34E0010A64C /* ResponseObject.swift */; };
+		F4467149209BA3820010A64C /* CustomErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4467144209BA32C0010A64C /* CustomErrorResponse.swift */; };
+		F446714D209BA3E00010A64C /* RemoteBaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F446714B209BA3DC0010A64C /* RemoteBaseImpl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +64,9 @@
 		94FD2E4CB6D7724DFDE262B1 /* Pods_RetrofireTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RetrofireTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8C8BA0DAE93FAF32CFF784A /* Pods-retrofireTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-retrofireTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-retrofireTests/Pods-retrofireTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DC59058679A53250CE99F9C8 /* Pods_retrofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_retrofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4467144209BA32C0010A64C /* CustomErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomErrorResponse.swift; sourceTree = "<group>"; };
+		F4467146209BA34E0010A64C /* ResponseObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseObject.swift; sourceTree = "<group>"; };
+		F446714B209BA3DC0010A64C /* RemoteBaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteBaseImpl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +133,7 @@
 		078A83401F127F8B001DE1E7 /* RetrofireTests */ = {
 			isa = PBXGroup;
 			children = (
+				F4467143209BA3180010A64C /* Common */,
 				078A834F1F12834D001DE1E7 /* RemoteBaseTest.swift */,
 				078A83431F127F8B001DE1E7 /* Info.plist */,
 			);
@@ -158,6 +165,16 @@
 				94FD2E4CB6D7724DFDE262B1 /* Pods_RetrofireTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F4467143209BA3180010A64C /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				F446714B209BA3DC0010A64C /* RemoteBaseImpl.swift */,
+				F4467144209BA32C0010A64C /* CustomErrorResponse.swift */,
+				F4467146209BA34E0010A64C /* ResponseObject.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -281,9 +298,18 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-RetrofireTests/Pods-RetrofireTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
+				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -296,13 +322,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Retrofire-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C28B7457EC6500C6ADC3D71C /* [CP] Copy Pods Resources */ = {
@@ -326,13 +355,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RetrofireTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FC9CD57D7F0C9A5E57C40EBD /* [CP] Copy Pods Resources */ = {
@@ -372,7 +404,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F446714D209BA3E00010A64C /* RemoteBaseImpl.swift in Sources */,
 				078A83501F12834D001DE1E7 /* RemoteBaseTest.swift in Sources */,
+				F4467149209BA3820010A64C /* CustomErrorResponse.swift in Sources */,
+				F4467148209BA3700010A64C /* ResponseObject.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
