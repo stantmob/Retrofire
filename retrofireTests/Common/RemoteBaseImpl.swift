@@ -76,4 +76,12 @@ class RemoteBaseImpl: RemoteBase {
             .build()
         return self.callSingle(request: request)
     }
+    
+    func deleteWithoutBody() -> Call<DefaultWithoutContent> {
+        let path = "http://www.mocky.io/v2/5aecb5de3200005300fa49da"
+        let request = RequestBuilder(path: path)
+            .method(.delete)
+            .build()
+        return self.callSingle(request: request)
+    }
 }

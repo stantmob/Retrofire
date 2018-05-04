@@ -103,15 +103,20 @@ open class RemoteBase {
                             }
                             break
                         }
-                        
-                        var responseMapped: [ResponseObject]? = ParseMappableObject<ResponseObject>.parseList(arrayJsonObject: value)
-                        
-                        if let response = responseMapped {
-                            exec.success(result: response)
-                        } else {
-                            responseMapped = ParseMappableObject<ResponseObject>.parseList(arrayJsonObject: [String()])
+                        do {
+                            var responseMapped: [ResponseObject]? = try ParseMappableObject<ResponseObject>.parseList(arrayJsonObject: value)
+                            
+                            if let response = responseMapped {
+                                exec.success(result: response)
+                            } else {
+                                responseMapped = try ParseMappableObject<ResponseObject>.parseList(arrayJsonObject: [String()])
+                                exec.success(result: responseMapped)
+                            }
+                        } catch {
+                            let responseMapped: [ResponseObject]? = [String()] as? [ResponseObject]
                             exec.success(result: responseMapped)
                         }
+                   
                         break
                         
                     case .failure(let error):

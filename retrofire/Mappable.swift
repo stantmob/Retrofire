@@ -13,6 +13,16 @@ public protocol Mappable {
     static func instanceBy<M>(json: JSON) -> M
 }
 
+public struct DefaultWithoutContent: Mappable {
+    
+    let description = "No content"
+        
+    public static func instanceBy<M>(json: JSON) -> M {
+        return DefaultWithoutContent() as! M
+    }
+}
+
+
 public struct Default: Mappable {
     let json: JSON
 
