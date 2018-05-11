@@ -10,12 +10,19 @@ DEPENDENCIES:
   - Quick
   - SwiftyJSON
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - Nimble
+    - Quick
+    - SwiftyJSON
+
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   Nimble: bfe1f814edabba69ff145cb1283e04ed636a67f2
   Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: e70e0b29125fd01ad8451f9248cf71593a765f8a
+PODFILE CHECKSUM: 50483b0dc847fe0a0b267d1721f5090481c4c65e
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.5.2
