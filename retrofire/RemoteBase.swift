@@ -58,12 +58,13 @@ open class RemoteBase {
                             break
                         }
                         
-                        let responseMapped = ParseMappableObject<ResponseObject>.parse(jsonObject: value)
+                        var responseMapped = ParseMappableObject<ResponseObject>.parse(jsonObject: value)
                         
                         if let response = responseMapped {
                             exec.success(result: response)
                         } else {
-                            exec.failed(error: self.buildErrorResponseFromErroMap(klass: ResponseObject.self))
+                            responseMapped = ParseMappableObject<ResponseObject>.parse(jsonObject: "")
+                            exec.success(result: responseMapped)
                         }
                         
                         break
@@ -102,14 +103,20 @@ open class RemoteBase {
                             }
                             break
                         }
-                        
-                        let responseMapped: [ResponseObject]? = ParseMappableObject<ResponseObject>.parseList(arrayJsonObject: value)
-                        
-                        if let response = responseMapped {
-                            exec.success(result: response)
-                        } else {
-                            exec.failed(error: self.buildErrorResponseFromErroMap(klass: ResponseObject.self))
+                        do {
+                            var responseMapped: [ResponseObject]? = try ParseMappableObject<ResponseObject>.parseList(arrayJsonObject: value)
+                            
+                            if let response = responseMapped {
+                                exec.success(result: response)
+                            } else {
+                                responseMapped = try ParseMappableObject<ResponseObject>.parseList(arrayJsonObject: [String()])
+                                exec.success(result: responseMapped)
+                            }
+                        } catch {
+                            let responseMapped: [ResponseObject]? = [String()] as? [ResponseObject]
+                            exec.success(result: responseMapped)
                         }
+                   
                         break
                         
                     case .failure(let error):
@@ -159,6 +166,7 @@ open class RemoteBase {
             || response.statusCode == 201
             || response.statusCode == 203
             || response.statusCode == 304
+            || response.statusCode == 204
     }
     
 //    private func isInvalidResponseStatusCode(response: HTTPURLResponse?) -> Bool{

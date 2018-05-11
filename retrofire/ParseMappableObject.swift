@@ -36,7 +36,7 @@ class ParseMappableObject<T: Mappable> where T: Any {
     /// - parameter arrayJsonObject: Could be any kind of array of JSON values.
     ///
     /// - returns: A new list of T instance with filled attributes got from arrayJsonObject.
-    static func parseList(arrayJsonObject: Any?) -> [T]? {
+    static func parseList(arrayJsonObject: Any?) throws -> [T]? {
         if (arrayJsonObject == nil) {
             return nil
         }

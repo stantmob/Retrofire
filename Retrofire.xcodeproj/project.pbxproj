@@ -16,12 +16,21 @@
 		078A833D1F127F8B001DE1E7 /* Retrofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 078A83331F127F8B001DE1E7 /* Retrofire.framework */; };
 		078A83441F127F8B001DE1E7 /* retrofire.h in Headers */ = {isa = PBXBuildFile; fileRef = 078A83361F127F8B001DE1E7 /* retrofire.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		078A834E1F12832D001DE1E7 /* RemoteBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078A834D1F12832D001DE1E7 /* RemoteBase.swift */; };
-		078A83501F12834D001DE1E7 /* RemoteBaseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078A834F1F12834D001DE1E7 /* RemoteBaseTest.swift */; };
 		078A83521F128A56001DE1E7 /* Call.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078A83511F128A56001DE1E7 /* Call.swift */; };
 		9DB66C207132A11460F165C9 /* Pods_retrofireTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EDF12732F975D97A9B0158F /* Pods_retrofireTests.framework */; };
 		C0FC7B8D2195099FB1330ACB /* Pods_retrofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC59058679A53250CE99F9C8 /* Pods_retrofire.framework */; };
 		C5A2CE2F1F3E1B699804716A /* Pods_Retrofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F9B8864D1BBC90C3CBDBDA9 /* Pods_Retrofire.framework */; };
 		C8156E1BE64828BFFA322ED6 /* Pods_RetrofireTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94FD2E4CB6D7724DFDE262B1 /* Pods_RetrofireTests.framework */; };
+		F4467148209BA3700010A64C /* ResponseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4467146209BA34E0010A64C /* ResponseObject.swift */; };
+		F4467149209BA3820010A64C /* CustomErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4467144209BA32C0010A64C /* CustomErrorResponse.swift */; };
+		F446714D209BA3E00010A64C /* RemoteBaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F446714B209BA3DC0010A64C /* RemoteBaseImpl.swift */; };
+		F4467150209C8C300010A64C /* SingleObjectActionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F446714E209C8BD20010A64C /* SingleObjectActionTest.swift */; };
+		F4467153209C95010010A64C /* ListOfObjectsActionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4467151209C94BD0010A64C /* ListOfObjectsActionTest.swift */; };
+		F4467156209C95820010A64C /* CreateObjectActionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4467154209C955C0010A64C /* CreateObjectActionTest.swift */; };
+		F4467159209C96040010A64C /* UpdateObjectActionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4467157209C95F30010A64C /* UpdateObjectActionTest.swift */; };
+		F446715C209C96C90010A64C /* DeleteObjectActionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F446715A209C96BA0010A64C /* DeleteObjectActionTest.swift */; };
+		F446715F209C97A90010A64C /* CustomErrorActionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F446715D209C978D0010A64C /* CustomErrorActionTest.swift */; };
+		F4467161209C99DE0010A64C /* Executer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4467160209C99DE0010A64C /* Executer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,7 +56,6 @@
 		078A833C1F127F8B001DE1E7 /* RetrofireTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RetrofireTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		078A83431F127F8B001DE1E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		078A834D1F12832D001DE1E7 /* RemoteBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteBase.swift; sourceTree = "<group>"; };
-		078A834F1F12834D001DE1E7 /* RemoteBaseTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteBaseTest.swift; sourceTree = "<group>"; };
 		078A83511F128A56001DE1E7 /* Call.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Call.swift; sourceTree = "<group>"; };
 		116D5C34A8DB5B4440E96141 /* Pods-Retrofire.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Retrofire.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Retrofire/Pods-Retrofire.debug.xcconfig"; sourceTree = "<group>"; };
 		2F9B8864D1BBC90C3CBDBDA9 /* Pods_Retrofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Retrofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,6 +69,16 @@
 		94FD2E4CB6D7724DFDE262B1 /* Pods_RetrofireTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RetrofireTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8C8BA0DAE93FAF32CFF784A /* Pods-retrofireTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-retrofireTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-retrofireTests/Pods-retrofireTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DC59058679A53250CE99F9C8 /* Pods_retrofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_retrofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4467144209BA32C0010A64C /* CustomErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomErrorResponse.swift; sourceTree = "<group>"; };
+		F4467146209BA34E0010A64C /* ResponseObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseObject.swift; sourceTree = "<group>"; };
+		F446714B209BA3DC0010A64C /* RemoteBaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteBaseImpl.swift; sourceTree = "<group>"; };
+		F446714E209C8BD20010A64C /* SingleObjectActionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleObjectActionTest.swift; sourceTree = "<group>"; };
+		F4467151209C94BD0010A64C /* ListOfObjectsActionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfObjectsActionTest.swift; sourceTree = "<group>"; };
+		F4467154209C955C0010A64C /* CreateObjectActionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateObjectActionTest.swift; sourceTree = "<group>"; };
+		F4467157209C95F30010A64C /* UpdateObjectActionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateObjectActionTest.swift; sourceTree = "<group>"; };
+		F446715A209C96BA0010A64C /* DeleteObjectActionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteObjectActionTest.swift; sourceTree = "<group>"; };
+		F446715D209C978D0010A64C /* CustomErrorActionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomErrorActionTest.swift; sourceTree = "<group>"; };
+		F4467160209C99DE0010A64C /* Executer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Executer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,8 +145,14 @@
 		078A83401F127F8B001DE1E7 /* RetrofireTests */ = {
 			isa = PBXGroup;
 			children = (
-				078A834F1F12834D001DE1E7 /* RemoteBaseTest.swift */,
 				078A83431F127F8B001DE1E7 /* Info.plist */,
+				F4467143209BA3180010A64C /* Common */,
+				F446714E209C8BD20010A64C /* SingleObjectActionTest.swift */,
+				F4467151209C94BD0010A64C /* ListOfObjectsActionTest.swift */,
+				F4467154209C955C0010A64C /* CreateObjectActionTest.swift */,
+				F4467157209C95F30010A64C /* UpdateObjectActionTest.swift */,
+				F446715A209C96BA0010A64C /* DeleteObjectActionTest.swift */,
+				F446715D209C978D0010A64C /* CustomErrorActionTest.swift */,
 			);
 			name = RetrofireTests;
 			path = retrofireTests;
@@ -158,6 +182,17 @@
 				94FD2E4CB6D7724DFDE262B1 /* Pods_RetrofireTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F4467143209BA3180010A64C /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				F446714B209BA3DC0010A64C /* RemoteBaseImpl.swift */,
+				F4467144209BA32C0010A64C /* CustomErrorResponse.swift */,
+				F4467146209BA34E0010A64C /* ResponseObject.swift */,
+				F4467160209C99DE0010A64C /* Executer.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -281,9 +316,18 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-RetrofireTests/Pods-RetrofireTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
+				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -296,13 +340,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Retrofire-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C28B7457EC6500C6ADC3D71C /* [CP] Copy Pods Resources */ = {
@@ -326,13 +373,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RetrofireTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FC9CD57D7F0C9A5E57C40EBD /* [CP] Copy Pods Resources */ = {
@@ -365,6 +415,7 @@
 				076273A71F24E4800081BCD2 /* ErrorResponse.swift in Sources */,
 				078A834E1F12832D001DE1E7 /* RemoteBase.swift in Sources */,
 				078A83521F128A56001DE1E7 /* Call.swift in Sources */,
+				F4467161209C99DE0010A64C /* Executer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,7 +423,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				078A83501F12834D001DE1E7 /* RemoteBaseTest.swift in Sources */,
+				F4467150209C8C300010A64C /* SingleObjectActionTest.swift in Sources */,
+				F446714D209BA3E00010A64C /* RemoteBaseImpl.swift in Sources */,
+				F446715C209C96C90010A64C /* DeleteObjectActionTest.swift in Sources */,
+				F4467153209C95010010A64C /* ListOfObjectsActionTest.swift in Sources */,
+				F446715F209C97A90010A64C /* CustomErrorActionTest.swift in Sources */,
+				F4467149209BA3820010A64C /* CustomErrorResponse.swift in Sources */,
+				F4467148209BA3700010A64C /* ResponseObject.swift in Sources */,
+				F4467156209C95820010A64C /* CreateObjectActionTest.swift in Sources */,
+				F4467159209C96040010A64C /* UpdateObjectActionTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
