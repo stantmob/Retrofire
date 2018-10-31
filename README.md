@@ -32,7 +32,7 @@ remoteBuilder implementation sample
 
 ## Instalation
 
-###CocoaPods
+### CocoaPods
 [CocoaPods](https://cocoapods.org/) is a dependency manager for Cocoa projects. You can install it with the following command:
 
 ```
