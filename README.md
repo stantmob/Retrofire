@@ -56,37 +56,45 @@ $ pod install
 ## Usage
 ### Making a single request
 
+```ruby
+var response: ResponseObject?
+remoteBaseImpl.findPost(id: 1)
+  .onSuccess() { responseObject in
+    response = responseObject
+  }
+  .call()
 ```
-request sample
+### Request a list
 
 ```
-###Request a list
-
+var responses: [ResponseObject]?
+remoteBaseImpl.posts()
+.onSuccess() { responseObjects in
+    responses = responseObjects
+    }
+.call()
 ```
-request sample
-
-```
-###Building model
+### Building model
 
 ```
 building model sample
 
 ```
 
-###Response handling
+### Response handling
 subtitle explain how to do a simple request
 
 ```
 request sample
 ```
 
-####Response hander
+#### Response hander
 subtitle explain response handler
 
 ```
 request sample
 ```
 
-##Goals
+## Goals
 * select thread to run
 * Multi part request
