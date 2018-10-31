@@ -32,7 +32,7 @@ remoteBuilder implementation sample
 
 ## Instalation
 
-###CocoaPods
+### CocoaPods
 [CocoaPods](https://cocoapods.org/) is a dependency manager for Cocoa projects. You can install it with the following command:
 
 ```
@@ -53,40 +53,48 @@ $ pod install
 
 ```
 
-##Usage
-###Making a single request
+## Usage
+### Making a single request
+
+```ruby
+var response: ResponseObject?
+remoteBaseImpl.findPost(id: 1)
+  .onSuccess() { responseObject in
+    response = responseObject
+  }
+  .call()
+```
+### Request a list
 
 ```
-request sample
-
+var responses: [ResponseObject]?
+remoteBaseImpl.posts()
+.onSuccess() { responseObjects in
+    responses = responseObjects
+    }
+.call()
 ```
-###Request a list
-
-```
-request sample
-
-```
-###Building model
+### Building model
 
 ```
 building model sample
 
 ```
 
-###Response handling
+### Response handling
 subtitle explain how to do a simple request
 
 ```
 request sample
 ```
 
-####Response hander
+#### Response hander
 subtitle explain response handler
 
 ```
 request sample
 ```
 
-##Goals
+## Goals
 * select thread to run
 * Multi part request
