@@ -15,7 +15,7 @@ public struct Request {
     let method:          HTTPMethod
     let queryParameters: [String:String]
     let bodyParameters:  [String:Any?]?
-    
+
     /// Initialize the Request Struct with necessary attributes for Alamofire Request
     ///
     /// - parameter path:            The URl path.
@@ -41,7 +41,7 @@ public struct Request {
         self.queryParameters = queryParameters
         self.bodyParameters  = bodyParameters
     }
-    
+
     /// Return the joined Path and QueryParameters
     ///
     /// Sample:
@@ -53,10 +53,10 @@ public struct Request {
         if (queryParameters.count == 0) {
             return self.path
         }
-        
+
         return queryParameters.reduce("\(self.path)?") { (value, map) in
             return "\(value)\(map.key)=\(map.value)&"
         }
     }
-    
+
 }

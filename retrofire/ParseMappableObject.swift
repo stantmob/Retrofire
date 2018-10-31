@@ -17,7 +17,7 @@ class ParseMappableObject<T: Mappable> where T: Any {
         //            print("\(name): \(type(of: value)) = '\(value)'")
         //        }
     }
-    
+
     /// Creates a 'T' instance with the specified attributes from jsonObject.
     ///
     /// - parameter jsonObject: Could be any kind of JSON values.
@@ -27,10 +27,10 @@ class ParseMappableObject<T: Mappable> where T: Any {
         if (jsonObject == nil) {
             return nil
         }
-        
+
         return T.instanceBy(json: JSON(jsonObject!))
     }
-    
+
     /// Creates a list of 'T' instance with the specified attributes from jsonObject.
     ///
     /// - parameter arrayJsonObject: Could be any kind of array of JSON values.
@@ -40,7 +40,7 @@ class ParseMappableObject<T: Mappable> where T: Any {
         if (arrayJsonObject == nil) {
             return nil
         }
-        
+
         return (arrayJsonObject as! [Any]).reduce([T]()) { (list, jsonObject) in
             var newList = list
             if let object = parse(jsonObject: jsonObject) {
