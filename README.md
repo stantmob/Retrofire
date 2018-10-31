@@ -53,8 +53,8 @@ $ pod install
 
 ```
 
-##Usage
-###Making a single request
+## Usage
+### Making a single request
 
 ```
 request sample
