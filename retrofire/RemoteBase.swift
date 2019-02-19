@@ -83,11 +83,20 @@ open class RemoteBase {
     /// - parameter request: The request object to be used on Alamofire.request.
     ///
     /// - returns: Return a Call<[ResponseObject]> with the list of result objects based on ResponseObject or ErrorResponse (if Alamofire gets failures) inside the Call.
-    public func callList<ResponseObject:Mappable>(request: Request) -> Call<[ResponseObject]> {
+    public func callList<ResponseObject:Mappable>(request: Request, encoding: URLEncoding? = nil) -> Call<[ResponseObject]> {
+        
+        var requestPathObject = ""
+        
+        if let urlEncoding = encoding {
+            requestPathObject = request.pathWithQueryParametersWithoutInterpolation()
+        } else {
+            requestPathObject = request.pathWithQueryParameters()
+        }
+        
         let alamofireFunc: (_ executable: Call<[ResponseObject]>) -> Void = { exec in
             Alamofire
-                .request(request.pathWithQueryParameters(), method: request.method, parameters: request.bodyParameters,
-                         encoding: JSONEncoding.default, headers: request.headers)
+                .request(requestPathObject, method: request.method, parameters: request.bodyParameters,
+                         encoding: encoding ?? JSONEncoding.default, headers: request.headers)
                 .responseJSON { dataResponse in
                     
                     switch(dataResponse.result) {

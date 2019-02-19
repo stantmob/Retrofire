@@ -59,4 +59,14 @@ public struct Request {
         }
     }
     
+    public func pathWithQueryParametersWithoutInterpolation() -> String {
+        if (queryParameters.count == 0) {
+            return self.path
+        }
+        
+        return queryParameters.reduce("\(self.path)?") { (value, map) in
+            return "\(value)\(map.key)=\(map.value)"
+        }
+    }
+    
 }
